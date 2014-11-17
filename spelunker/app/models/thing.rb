@@ -27,6 +27,10 @@ class Thing < ActiveRecord::Base
     "http://www.vam.ac.uk/api/json/museumobject/#{object_number}"
   end
 
+  def has_image?
+    !primary_image_id.blank?
+  end
+
   def image_url(size=nil)
     sizes = {small: 's',
              medium: 'm',

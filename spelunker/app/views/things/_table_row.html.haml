@@ -1,5 +1,8 @@
 %tr
   %td= link_to 'view', thing_path(thing)
+  %td
+    - if thing.has_image?
+      = link_to image_tag(thing.image_url(:small)), thing_path(thing)
   - for field in Thing.attribute_names
     %td
       - if Facet.all.include?(field) && !thing.send(field).blank?
