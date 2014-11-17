@@ -6,7 +6,7 @@ class FacetsController < ApplicationController
   def show
     @facet = params[:id]
 
-    values = Thing.group(@facet).pluck(@facet)
+    values = Thing.group(@facet).count.to_a.sort_by{|v| v.last}.reverse
     if params[:page]
       current_page = params[:page].to_i
     else

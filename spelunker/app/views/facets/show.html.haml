@@ -1,8 +1,15 @@
 %h1 Distinct values for facet: #{@facet}
 
-%ul
-  - for v in @facet_vals
-    - unless v.blank?
-      %li= link_to v, facet_thing_path(@facet,v)
+%table.table
+  %thead
+    %tr
+      %th Value
+      %th # with this value
+  %tbody
+    - for v in @facet_vals
+      - unless v.first.blank?
+        %tr
+          %td= link_to v.first, facet_thing_path(@facet,v.first)
+          %td= v.last
 
 = will_paginate @values
