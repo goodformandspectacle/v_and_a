@@ -1,0 +1,10 @@
+%table
+  %thead
+    %tr
+      %th &nbsp;
+      - for field in Thing.attribute_names
+        %th= field
+      %th &nbsp;
+  %tbody
+    - for thing in @things
+      = render partial: 'things/table_row', locals: {thing: thing}

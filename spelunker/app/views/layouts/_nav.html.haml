@@ -1,0 +1,19 @@
+%nav.navbar.navbar-default.navbar-inverse{role: 'navigation'}
+  .container
+    <!-- Brand and toggle get grouped for better mobile display -->
+    .navbar-header
+      %button.navbar-toggle{:type => 'button', "data-toggle" => 'collapse', 'data-target' => '#navbar-collapse'}
+        %span.sr-only Toggle navigation
+        %span.icon-bar 
+        %span.icon-bar 
+        %span.icon-bar 
+      = link_to "V&A Spelunker", '/', class: 'navbar-brand'
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    #navbar-collapse.navbar-collapse.collapse
+      %ul.nav.navbar-nav
+        %li= link_to "Things", things_path
+      %form.navbar-form.navbar-nav{role: 'search', action: results_search_path}
+        .form-group
+          %input.form-control{placeholder: 'Search', name: 'query'}
+        %button.btn.btn-default{type: 'Submit'} Search

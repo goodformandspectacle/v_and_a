@@ -1,0 +1,4 @@
+%h1 Search results for '#{@query}'
+
+- if @results.any?
+  = render partial: 'things/table', locals: {things: @results}

@@ -1,0 +1,5 @@
+%tr
+  %td= link_to 'view', thing_path(thing)
+  - for field in Thing.attribute_names
+    %td= thing.send(field)
+  %td= link_to 'view', thing_path(thing)

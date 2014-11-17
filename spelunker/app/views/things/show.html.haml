@@ -1,0 +1,16 @@
+.page_title
+  - if !@thing.title.blank?
+    %h1= @thing.title
+  - else
+    %h1 Thing
+
+- if !@thing.primary_image_id.blank?
+  .pic= image_tag(@thing.image_url(:large))
+
+.thing-details
+  %dl
+    - for field in Thing.attribute_names
+      %dt= field
+      %dd= @thing.send(field)
+
+%p= link_to "View this in the V&A API", @thing.api_path
