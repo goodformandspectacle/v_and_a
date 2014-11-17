@@ -1,0 +1,276 @@
+[
+    {
+        "pk": 114546, 
+        "model": "collection.museumobject", 
+        "fields": {
+            "original_price": "", 
+            "attributions_note": "", 
+            "related_museum_numbers": "", 
+            "museum_number": "S.134:230-2007", 
+            "date_end": "1865-12-31", 
+            "labels": [], 
+            "descriptive_line": "Photograph of Henry Neville as Bob Brierly in <i>The Ticket of Leave Man</i>, Olympic Theatre. Guy Little Collection.", 
+            "shape": "", 
+            "longitude": "-0.12714000", 
+            "year_start": 1865, 
+            "exhibitions": [], 
+            "subjects": [
+                {
+                    "pk": 31563, 
+                    "model": "collection.subject", 
+                    "fields": {
+                        "name": "Neville, Henry", 
+                        "museumobject_count": 102, 
+                        "source": "name", 
+                        "cis_id": "N6441", 
+                        "museumobject_image_count": 102, 
+                        "type": "", 
+                        "slug": "neville-henry"
+                    }
+                }
+            ], 
+            "date_text": "1865 (photographed)", 
+            "primary_image_id": "2009BX7717", 
+            "rights": 3, 
+            "physical_description": "Sepia photograph of Henry Neville as Bob Brierly in <i>The Ticket of Leave Man</i> at the Olympic Theatre.", 
+            "dimensions": "Height: 9 cm, Width: 6 cm", 
+            "title": "Guy Little Theatrical Photograph", 
+            "date_start": "1865-01-01", 
+            "materials_techniques": "", 
+            "last_processed": "2014-10-31 21:06:50", 
+            "label": "", 
+            "event_text": "", 
+            "production_type": "", 
+            "collections": [
+                {
+                    "pk": 10, 
+                    "model": "collection.collection", 
+                    "fields": {
+                        "code": "T&P", 
+                        "name": "Theatre and Performance Collection", 
+                        "museumobject_count": 69989, 
+                        "source": "", 
+                        "cis_id": null, 
+                        "museumobject_image_count": 53192, 
+                        "type": "", 
+                        "slug": "tp"
+                    }
+                }
+            ], 
+            "location": "In Storage", 
+            "marks": "", 
+            "latitude": "51.50632100", 
+            "techniques": [], 
+            "materials": [], 
+            "edition_number": "", 
+            "styles": [], 
+            "inventory_set": [
+                {
+                    "pk": 183485, 
+                    "model": "collection.inventory", 
+                    "extras": {
+                        "gallery_id": null
+                    }, 
+                    "fields": {
+                        "box": "", 
+                        "case": "", 
+                        "inventory_number": 1361952, 
+                        "room": "", 
+                        "part_name": "", 
+                        "museum_number": "S.134:230-2007", 
+                        "museumobject": 114546, 
+                        "shelf": "", 
+                        "site": "", 
+                        "on_display": false, 
+                        "status": "", 
+                        "location": "In Storage", 
+                        "museum_number_token": "s1342302007", 
+                        "gallery": null
+                    }
+                }
+            ], 
+            "updated": null, 
+            "galleries": [], 
+            "names": [
+                {
+                    "pk": 142, 
+                    "model": "collection.name", 
+                    "fields": {
+                        "death_date": null, 
+                        "surname": "", 
+                        "name": "London Stereoscopic Company", 
+                        "gender": null, 
+                        "museumobject_count": 423, 
+                        "death_year": null, 
+                        "source": "object_production", 
+                        "cis_id": "A16662", 
+                        "museumobject_image_count": 356, 
+                        "forename": "", 
+                        "birth_date": null, 
+                        "nationality": "", 
+                        "type": "organisation", 
+                        "slug": "london-stereoscopic-company", 
+                        "birth_year": null
+                    }
+                }, 
+                {
+                    "pk": 34063, 
+                    "model": "collection.name", 
+                    "fields": {
+                        "death_date": "1910-12-31", 
+                        "surname": "", 
+                        "name": "Henry Neville", 
+                        "gender": null, 
+                        "museumobject_count": 102, 
+                        "death_year": 1910, 
+                        "source": "content", 
+                        "cis_id": "N6441", 
+                        "museumobject_image_count": 102, 
+                        "forename": "", 
+                        "birth_date": "1837-01-01", 
+                        "nationality": "", 
+                        "type": "person", 
+                        "slug": "neville-henry", 
+                        "birth_year": 1837
+                    }
+                }
+            ], 
+            "placecontext_set": [
+                {
+                    "pk": 114329, 
+                    "model": "collection.placecontext", 
+                    "extras": {
+                        "place_id": 7
+                    }, 
+                    "fields": {
+                        "part_name": "", 
+                        "uncertainty": "", 
+                        "museumobject": 114546, 
+                        "role": "photographed", 
+                        "place": 7, 
+                        "order": 1
+                    }
+                }
+            ], 
+            "original_currency": "", 
+            "museum_number_token": "s1342302007", 
+            "object": "Photograph", 
+            "categories": [
+                {
+                    "pk": 17, 
+                    "model": "collection.category", 
+                    "fields": {
+                        "name": "Portraits", 
+                        "museumobject_count": 30836, 
+                        "source": "cis_category", 
+                        "cis_id": null, 
+                        "museumobject_image_count": 17252, 
+                        "type": "", 
+                        "slug": "portraits"
+                    }
+                }, 
+                {
+                    "pk": 45, 
+                    "model": "collection.category", 
+                    "fields": {
+                        "name": "Photographs", 
+                        "museumobject_count": 42161, 
+                        "source": "cis_category", 
+                        "cis_id": null, 
+                        "museumobject_image_count": 32247, 
+                        "type": "", 
+                        "slug": "photographs"
+                    }
+                }
+            ], 
+            "last_checked": "2014-10-31 21:06:50", 
+            "public_access_description": "Photograph of Henry Neville as Bob Brierly in The Ticket of Leave Man at the Olympic Theatre.\n\nPhotography was a novel and exciting development in Victorian days. Most actors and actresses had studio photographs taken, in everyday dress or theatrical costume, for \u2018cartes de visite\u2019, and later \u2018cabinet cards\u2019.  Both were albumen prints made from glass negatives, attached to stiff card backing printed with the photographer\u2019s name. \n\n\u2018Cartes de visite\u2019, the size of  formal visiting cards, were patented in 1854 and produced in their millions during the 1860s when it became fashionable to collect them. Their subjects included scenic views, tourist attractions and works of art, as well as portraits. They were superseded in the late 1870s by the larger and sturdier \u2018cabinet cards\u2019 whose popularity waned in turn during the 1890s in favour of postcards and studio portraits.\n \nThis photograph comes from a large collection of \u2018cartes de visite\u2019 and \u2018cabinet cards\u2019 removed from their backings and mounted in albums by Guy Tristram Little (d.1953) who bequeathed them to the V&A.  A collector of greetings cards, games and photographs, Guy Little was a partner in the legal firm Messrs Milles Jennings White & Foster, and the solicitor and executor of Mrs. Gabrielle Enthoven, whose theatrical collection formed the basis of the Theatre Collections at the V&A.", 
+            "exhibition_history": "", 
+            "bibliography": "", 
+            "vanda_exhibition_history": "", 
+            "slug": "guy-little-theatrical-photograph-photograph-london-stereoscopic-company", 
+            "sys_updated": "2013-08-17 00:00:00", 
+            "image_set": [
+                {
+                    "pk": 137941, 
+                    "model": "collection.image", 
+                    "fields": {
+                        "sys_updated": "2012-09-12 00:00:00", 
+                        "last_processed": "2014-10-31 12:29:22", 
+                        "priority": 0, 
+                        "image_id": "2009BX7717", 
+                        "sys_id": 407717, 
+                        "last_checked": "2014-10-31 12:29:22", 
+                        "size_bytes": null, 
+                        "local": "collection_images/2009BX/2009BX7717.jpg"
+                    }
+                }
+            ], 
+            "places": [
+                {
+                    "pk": 7, 
+                    "model": "collection.place", 
+                    "extras": {
+                        "parent_id": 171
+                    }, 
+                    "fields": {
+                        "name": "London", 
+                        "parent": 171, 
+                        "country": "England", 
+                        "museumobject_count": 64079, 
+                        "longitude": "-0.12714000", 
+                        "source": "production", 
+                        "cis_id": "x28980", 
+                        "museumobject_image_count": 35428, 
+                        "latitude": "51.50632100", 
+                        "type": "city / town", 
+                        "slug": "london-england-x28980"
+                    }
+                }
+            ], 
+            "artist": "London Stereoscopic Company", 
+            "namecontext_set": [
+                {
+                    "pk": 138813, 
+                    "model": "collection.namecontext", 
+                    "extras": {
+                        "name_id": 142
+                    }, 
+                    "fields": {
+                        "name": 142, 
+                        "part_name": "", 
+                        "uncertainty": "", 
+                        "museumobject": 114546, 
+                        "role": "photographer", 
+                        "order": 101
+                    }
+                }, 
+                {
+                    "pk": 138814, 
+                    "model": "collection.namecontext", 
+                    "extras": {
+                        "name_id": 34063
+                    }, 
+                    "fields": {
+                        "name": 34063, 
+                        "part_name": "", 
+                        "uncertainty": "", 
+                        "museumobject": 114546, 
+                        "role": "subject", 
+                        "order": 601
+                    }
+                }
+            ], 
+            "historical_significance": "", 
+            "year_end": 1865, 
+            "object_number": "O145673", 
+            "events": [], 
+            "credit": "Bequeathed by Guy Little", 
+            "history_note": "This is one of the outstanding collection of 19th Century photographs owned by Guy Little presented to the museum in the early 20th Century.", 
+            "place": "London", 
+            "production_note": "", 
+            "historical_context_note": "", 
+            "collection_code": "T&P"
+        }
+    }
+]
