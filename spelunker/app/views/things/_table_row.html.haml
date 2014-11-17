@@ -1,5 +1,9 @@
 %tr
   %td= link_to 'view', thing_path(thing)
   - for field in Thing.attribute_names
-    %td= thing.send(field)
+    %td
+      - if Facet.all.include?(field) && !thing.send(field).blank?
+        = link_to thing.send(field), facet_thing_path(field, thing.send(field))
+      - else
+        = thing.send(field)
   %td= link_to 'view', thing_path(thing)
