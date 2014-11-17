@@ -2,7 +2,7 @@
   - if !@thing.title.blank?
     %h1= @thing.title
   - else
-    %h1 Thing
+    %h1 No Title
 
 - if !@thing.primary_image_id.blank?
   .pic= image_tag(@thing.image_url(:large))
