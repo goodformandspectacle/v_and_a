@@ -1,6 +1,6 @@
 class SearchController < ApplicationController
   def results
     @query = params[:query]
-    @results = Thing.search(@query)
+    @things = Thing.search(@query).paginate(page: params[:page])
   end
 end

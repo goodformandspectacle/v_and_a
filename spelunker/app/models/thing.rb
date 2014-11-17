@@ -4,7 +4,7 @@ class Thing < ActiveRecord::Base
   # Dusen stuff
   search_syntax do
     search_by :text do |scope, phrases|
-      columns = %w{Resume Extract}
+      columns = ["artist", "attributions_note", "bibliography", "credit", "descriptive_line", "event_text", "exhibition_history", "gallery", "historical_context_note", "historical_significance", "history_note", "label", "location", "marks", "materials", "materials_techniques", "object", "physical_description", "place", "production_note", "production_type", "public_access_description", "techniques", "title", "vanda_exhibition_history", "year_end", "year_start"]
       scope.where_like(columns => phrases)
     end
   end
