@@ -36,11 +36,11 @@ class Thing < ActiveRecord::Base
              medium: 'm',
              large: 'l'}
     if size
-      size_suffix = "_#{sizes[size]}"
+      size_suffix = "_jpg_#{sizes[size]}"
     else
       size_suffix = ""
     end
     # http://media.vam.ac.uk/media/thira/collection_images/2009BX/2009BX7717_jpg_l.jpg 
-    "http://media.vam.ac.uk/media/thira/collection_images/#{primary_image_id[0,6]}/#{primary_image_id}_jpg#{size_suffix}.jpg"
+    "http://media.vam.ac.uk/media/thira/collection_images/#{primary_image_id[0,6]}/#{primary_image_id}#{size_suffix}.jpg"
   end
 end
