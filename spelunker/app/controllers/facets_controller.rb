@@ -1,6 +1,6 @@
 class FacetsController < ApplicationController
   def index
-    @facets = %w{object materials_techniques materials techniques place location collection_code}
+    @facets = %w{object materials_techniques materials techniques place location collection_code year_start year_end}
   end
 
   def show
