@@ -8,4 +8,6 @@ Spelunker::Application.routes.draw do
       get 'results'
     end
   end
+
+  root to: 'things#index'
 end
