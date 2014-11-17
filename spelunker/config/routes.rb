@@ -1,6 +1,8 @@
 Spelunker::Application.routes.draw do
+  resources :facets
+  get 'facets/:facet_id/:id', to: 'facets#things', as: :facet_thing
+
   resources :things
-  resources :object_types
   resource :search, :controller => "search" do
     member do
       get 'results'

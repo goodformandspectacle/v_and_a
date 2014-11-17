@@ -1,7 +1,0 @@
-%h1 All types of object
-
-%ul
-  - for o in @object_types
-    %li= link_to o, "/object_types/#{URI.encode(o)}"
-
-= will_paginate @values

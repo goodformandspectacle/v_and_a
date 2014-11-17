@@ -1,6 +1,7 @@
-%h1= params[:id]
+%h1 Things with #{params[:facet_id]}=#{params[:id]}
 
 = render partial: 'things/table', locals: {things: @things}
 
 = will_paginate @things
+
 

@@ -9,6 +9,20 @@ class Thing < ActiveRecord::Base
     end
   end
 
+  # counting stuff
+
+  def self.number_with(field)
+    self.where("#{field} != ''").count
+  end
+
+  def self.percentage_with(field)
+    self.number_with(field).to_f / self.all.count * 100
+  end
+
+  def self.distinct_values_for(field)
+    Thing.group(field).pluck(field)
+  end
+
   def api_path
     "http://www.vam.ac.uk/api/json/museumobject/#{object_number}"
   end
