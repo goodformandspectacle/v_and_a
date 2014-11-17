@@ -1,0 +1,23 @@
+<h1>Distinct values for facet: <%= @facet %></h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Value</th>
+      <th># with this value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for v in @facet_vals %>
+      <% unless v.first.blank? %>
+        <tr>
+          <td><%= link_to v.first, facet_thing_path(@facet, v.first) %></td>
+          <td><%= v.last %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @values %>
+

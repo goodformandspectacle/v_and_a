@@ -1,0 +1,23 @@
+<! doctype html>
+<html>
+  <head>
+    <%= csrf_meta_tag %>
+    <%= favicon_link_tag %>
+    <meta http-equiv-'Content-Type' content='text/html; charset=utf-8' />
+    <meta name='lang' content='en' />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <title>
+      <%= yield :pagetitle %>
+      V&amp;A Spelunker
+    </title>
+    <%= stylesheet_link_tag 'application' %>
+    <%= javascript_include_tag 'application' %>
+    
+  </head>
+  <body>
+    <%= render 'layouts/nav' %>
+    <div class="container">
+      <%= yield %>
+    </div>
+  </body>
+</html>

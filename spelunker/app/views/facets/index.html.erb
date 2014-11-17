@@ -1,0 +1,7 @@
+<h1>Facets</h1>
+
+<ul>
+  <% for facet in @facets %>
+    <li><%= link_to facet, facet_path(facet) %></li>
+  <% end %>
+</ul>

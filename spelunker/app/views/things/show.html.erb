@@ -1,0 +1,30 @@
+<div class='page_title'>
+  <% if !@thing.title.blank? %>
+    <h1><%= @thing.title %></h1>
+  <% else %>
+    <h1>No Title</h1>
+  <% end %>
+</div>
+
+<% if !@thing.primary_image_id.blank? %>
+  <div class='pic'>
+    <%= link_to image_tag(@thing.image_url(:large)), @thing.image_url %>
+  </div>
+<% end %>
+
+<div class="thing-details">
+  <dl>
+    <% for field in Thing.attribute_names %>
+      <dt><%= field %></dt>
+      <dd>
+        <% if Facet.all.include?(field) && !@thing.send(field).blank? %>
+          <%= link_to @thing.send(field), facet_thing_path(field, @thing.send(field)) %>
+        <% else %>
+          <%= @thing.send(field) %>
+        <% end %>
+      </dd>
+    <% end %>
+  </dl>
+</div>
+
+<p><%= link_to "View this in the V&A API", @thing.api_path %></p>
