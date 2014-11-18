@@ -23,6 +23,23 @@ class Thing < ActiveRecord::Base
     Thing.group(field).pluck(field)
   end
 
+  def accession_year
+    if museum_number[-4..-1].to_s =~ /\d{4}/
+      y = museum_number[-4..-1].to_i
+      if (y > 1840) && (y < 2015)
+        y
+      else
+        nil
+      end
+    end
+  end
+
+  def accession_year_valid?
+    (accession_year =~ /\d{4}/) != nil
+  end
+
+
+
   def api_path
     "http://www.vam.ac.uk/api/json/museumobject/#{object_number}"
   end
