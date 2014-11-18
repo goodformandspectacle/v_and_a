@@ -19,7 +19,7 @@ class SketchesController < ApplicationController
 
     things.each do |thing|
       scaled_start = thing.year_start.to_i.scale_between(@min_year_start,@max_year_end,0,width)
-      scaled_end = thing.year_end.to_i.scale_between(@min_year_start,@max_year_end,0,width)
+      scaled_end = (thing.year_end.to_i + 1).scale_between(@min_year_start,@max_year_end,0,width)
       scaled_width = scaled_end - scaled_start
 
       if thing.completeness > 0.65
