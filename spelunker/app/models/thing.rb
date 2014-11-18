@@ -43,4 +43,12 @@ class Thing < ActiveRecord::Base
     # http://media.vam.ac.uk/media/thira/collection_images/2009BX/2009BX7717_jpg_l.jpg 
     "http://media.vam.ac.uk/media/thira/collection_images/#{primary_image_id[0,6]}/#{primary_image_id}#{size_suffix}.jpg"
   end
+
+  def completeness
+    fields = Thing.attribute_names
+    total = fields.size
+
+    filled_out_fields = fields.select {|f| !self.send(f).blank?}
+    filled_out_fields.size.to_f / total
+  end
 end
