@@ -1,0 +1,5 @@
+<% things.each do |thing| %>
+    <% if thing.has_image? %>
+      <%= link_to image_tag(thing.image_url(:small)), thing_path(thing) %>
+    <% end %>
+<% end %>

@@ -1,8 +1,8 @@
-<h1>Search results for '<%= @query %>'</h1>
+<h1>'<%= @query %>'</h1>
 
 <% if @things.any? %>
   <%= render partial: 'things/table', locals: {things: @things} %>
   <%= will_paginate @things %>
 <% else %>
-  <p>Couldn't find any results for that query</p>
+  <p><strong>Bzzt.</strong> No '<%= @query %>' things.</p>
 <% end %>
