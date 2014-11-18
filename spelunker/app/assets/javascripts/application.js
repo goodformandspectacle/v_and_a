@@ -22,8 +22,8 @@ $(document).ready(function() {
       img.className = 'popover';
       img.src = this.dataset.smallUrl;
       //img.style = "top: " + e.pageY + "px; left: " + e.pageX + "px";
-      img.style.top = e.pageY + 'px';
-      img.style.left = e.pageX + 'px';
+      img.style.top = e.pageY + 10 + 'px';
+      img.style.left = e.pageX + 10 +'px';
       document.body.appendChild(img);  
     }
 
@@ -46,8 +46,8 @@ $(document).ready(function() {
       img.className = 'popover';
       img.src = thing.dataset.smallUrl;
       //img.style = "top: " + e.pageY + "px; left: " + e.pageX + "px";
-      img.style.top = e.pageY + 'px';
-      img.style.left = e.pageX + 'px';
+      img.style.top = e.pageY + 10 +  'px';
+      img.style.left = e.pageX + 10 + 'px';
       document.body.appendChild(img);  
     }
   }, function(e) {
