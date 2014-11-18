@@ -1,0 +1,10 @@
+<div id="explanation">
+  <p>This covers <b><%= @rows.count %></b> objects from between <b><%= @min_year_start %></b> to <b><%= @max_year_end %></b></p>
+</div>
+
+<div id="sketch-container">
+  <% @rows.each_with_index do |row,i| %>
+    <a class='block <%= row[:redness] %>' style="top: <%= i*3 %>px; left: <%= row[:start] %>px; width: <%= row[:width] %>px;" title="<%= row[:thing].title %>" href="<%= thing_path(row[:thing]) %>">&nbsp</a>
+  <% end %>
+</div>
+

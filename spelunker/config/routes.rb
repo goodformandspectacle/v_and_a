@@ -9,5 +9,11 @@ Spelunker::Application.routes.draw do
     end
   end
 
+  resources :sketches do
+    collection do
+      get 'completeness'
+    end
+  end
+
   root to: 'things#index'
 end

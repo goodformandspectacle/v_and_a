@@ -1,0 +1,53 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+#sketch-container {
+  width: 1000px;
+  height: 30000px;
+  background: black;
+  position: relative;
+
+  a.block {
+    display: block;
+    position: absolute;
+    /*border-top: 1px solid #888;*/
+    height: 3px;
+
+    &:hover, &:active {
+      background: yellow !important;
+    }
+
+    &.very_red {
+      &:link, &:visited {
+        background: #ff0000;
+      }
+    }
+    &.quite_red {
+      &:link, &:visited {
+        background: #cc0000;
+      }
+    }
+    &.little_red {
+      &:link, &:visited {
+        background: #880000;
+      }
+    }
+    &.not_red {
+      &:link, &:visited {
+        background: #440000;
+      }
+    }
+  }
+}
+
