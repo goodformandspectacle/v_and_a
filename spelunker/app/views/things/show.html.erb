@@ -14,6 +14,10 @@
 
 <p><%= link_to "View the V&A API .json response", @thing.api_path %></p>
 
+<% if @thing.accession_year %>
+  <p>Accession year: <b><%= @thing.accession_year %></b> (we think)</p>
+<% end %>
+
 <div class="thing-details">
   <dl>
     <% for field in Thing.attribute_names %>

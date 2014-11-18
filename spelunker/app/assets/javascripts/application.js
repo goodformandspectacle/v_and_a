@@ -18,7 +18,6 @@ $(document).ready(function() {
   $("#sketch-container a.block").hover(function(e) {
     // get the image data
     if(this.dataset.smallUrl) {
-      console.log(this.dataset.smallUrl);
       var img = document.createElement('img');  
       img.className = 'popover';
       img.src = this.dataset.smallUrl;
@@ -26,13 +25,34 @@ $(document).ready(function() {
       img.style.top = e.pageY + 'px';
       img.style.left = e.pageX + 'px';
       document.body.appendChild(img);  
-      console.log(e);
-      console.log(img);
     }
-    
-    // display it by the cursor
-    // wax on
+
+    // find the id
+    var thingId = this.dataset.thingId;
+    $("#accession-"+thingId).addClass('highlight');
   }, function() {
     $(".popover").remove();
+    $(".accession").removeClass('highlight');
+  });
+
+  $("#accessions .accession").hover(function(e) {
+    var thingId = this.dataset.thingId;
+    $("#thing-"+thingId).addClass('forcehover');
+
+    var thing = $("#thing-"+thingId)[0];
+
+    if(thing.dataset.smallUrl) {
+      var img = document.createElement('img');  
+      img.className = 'popover';
+      img.src = thing.dataset.smallUrl;
+      //img.style = "top: " + e.pageY + "px; left: " + e.pageX + "px";
+      img.style.top = e.pageY + 'px';
+      img.style.left = e.pageX + 'px';
+      document.body.appendChild(img);  
+    }
+  }, function(e) {
+    $(".popover").remove();
+    $(".accession").removeClass('highlight');
+    $(".block").removeClass('forcehover');
   });
 });

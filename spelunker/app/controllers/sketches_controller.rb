@@ -6,7 +6,7 @@ end
 
 class SketchesController < ApplicationController
   def completeness
-    width = 1000
+    width = 960
     things = Thing.where("year_start != ''").where("year_end !=''").limit(10000)
     @min_year_start = things.min_by {|t| t.year_start.to_i}.year_start.to_i
     @max_year_end = things.max_by {|t| t.year_end.to_i}.year_end.to_i

@@ -13,16 +13,21 @@
  */
 
 #sketch-container {
-  width: 1000px;
+  width: 960px;
   height: 30000px;
   background: black;
   position: relative;
+  float: left;
 
   a.block {
     display: block;
     position: absolute;
     /*border-top: 1px solid #888;*/
     height: 3px;
+
+    &.forcehover {
+      background: yellow !important;
+    }
 
     &:hover, &:active {
       background: yellow !important;
@@ -48,6 +53,21 @@
       &:link, &:visited {
         background: #440000;
       }
+    }
+  }
+}
+
+#accessions {
+  background: #eee;
+  float: left;
+  width: 162px;
+  height: 30000px;
+  position: relative;
+  a.accession {
+    display: block;
+    position: absolute;
+    &.highlight {
+      border: 1px solid red;
     }
   }
 }
