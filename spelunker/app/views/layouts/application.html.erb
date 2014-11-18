@@ -14,7 +14,7 @@
     <%= javascript_include_tag 'application' %>
     
   </head>
-  <body>
+  <body class='<%= yield :bodyclass %>'>
     <%= render 'layouts/nav' %>
     <div class="container">
       <%= yield %>

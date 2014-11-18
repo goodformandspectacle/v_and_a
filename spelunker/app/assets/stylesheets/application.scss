@@ -11,6 +11,9 @@
  *= require_self
  *= require_tree .
  */
+body.dark {
+  background: black;
+}
 
 #sketch-header {
   font-weight: bold;
@@ -22,6 +25,7 @@
   }
   .end {
     float:right;
+    padding-right: 5px;
   }
 }
 
@@ -31,6 +35,7 @@
   float: left;
   .start {
     float: left;
+    padding-left: 5px;
   }
   .end {
     float:right;
@@ -59,31 +64,31 @@
       text-decoration: none !important;
     }
 
-    &.very_red {
+    &.very_yellow {
       &:link, &:visited {
-        background: #ff0000;
+        background: #ffff00;
       }
     }
-    &.quite_red {
+    &.quite_yellow {
       &:link, &:visited {
-        background: #cc0000;
+        background: #cccc00;
       }
     }
-    &.little_red {
+    &.little_yellow {
       &:link, &:visited {
-        background: #880000;
+        background: #888800;
       }
     }
-    &.not_red {
+    &.not_yellow {
       &:link, &:visited {
-        background: #440000;
+        background: #444400;
       }
     }
   }
 }
 
 #accessions {
-  background: #eee;
+  background: black;
   float: left;
   width: 162px;
   height: 30000px;
@@ -93,18 +98,18 @@
     position: absolute;
     width: 3px;
     height: 3px;
-    background: #2a6496;
+    background: cyan;
     span {
       display: none;
     }
     &.highlight {
-      border: 1px solid red;
+      border: 5px solid cyan;
     }
     &.missing {
       background: darkred;
     }
     &:hover, &:active {
-      border: 1px solid red;
+      border: 5px solid cyan;
       text-decoration: none !important;
     }
   }

@@ -7,7 +7,11 @@ end
 class SketchesController < ApplicationController
   def completeness
     width = 960
-    things = Thing.where("year_start != ''").where("year_end !=''").limit(10000)
+    if params[:start] && params[:end]
+      things = Thing.where("year_start > ?", params[:start].to_i).where("year_end <= ?", params[:end].to_i).limit(10000)
+    else
+      things = Thing.where("year_start != ''").where("year_end !=''").limit(10000)
+    end
     @min_year_start = things.min_by {|t| t.year_start.to_i}.year_start.to_i
     @max_year_end = things.max_by {|t| t.year_end.to_i}.year_end.to_i
 
@@ -19,18 +23,18 @@ class SketchesController < ApplicationController
       scaled_width = scaled_end - scaled_start
 
       if thing.completeness > 0.65
-        redness = 'very'
+        yellowness = 'very'
       elsif thing.completeness > 0.5
-        redness = 'quite'
+        yellowness = 'quite'
       elsif thing.completeness > 0.35
-        redness = 'little'
+        yellowness = 'little'
       else
-        redness = 'not'
+        yellowness = 'not'
       end
 
       t = {start: scaled_start,
            width: scaled_width,
-           redness: "#{redness}_red",
+           yellowness: "#{yellowness}_yellow",
            thing: thing}
       rows << t
     end
