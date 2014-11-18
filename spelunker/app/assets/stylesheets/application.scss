@@ -12,6 +12,31 @@
  *= require_tree .
  */
 
+#sketch-header {
+  font-weight: bold;
+  border-right: 1px solid #ccc;
+  width: 960px;
+  float: left;
+  .start {
+    float: left;
+  }
+  .end {
+    float:right;
+  }
+}
+
+#accession-header {
+  font-weight: bold;
+  width: 162px;
+  float: left;
+  .start {
+    float: left;
+  }
+  .end {
+    float:right;
+  }
+}
+
 #sketch-container {
   width: 960px;
   height: 30000px;
@@ -66,8 +91,21 @@
   a.accession {
     display: block;
     position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #2a6496;
+    span {
+      display: none;
+    }
     &.highlight {
       border: 1px solid red;
+    }
+    &.missing {
+      background: darkred;
+    }
+    &:hover, &:active {
+      border: 1px solid red;
+      text-decoration: none !important;
     }
   }
 }
