@@ -4,7 +4,7 @@
 
 <div id="sketch-container">
   <% @rows.each_with_index do |row,i| %>
-    <a class='block <%= row[:redness] %>' style="top: <%= i*3 %>px; left: <%= row[:start] %>px; width: <%= row[:width] %>px;" title="<%= row[:thing].title %>" href="<%= thing_path(row[:thing]) %>">&nbsp</a>
+    <a class='block <%= row[:redness] %>' style="top: <%= i*3 %>px; left: <%= row[:start] %>px; width: <%= row[:width] %>px;" data-title="<%= row[:thing].title %>" data-small-url="<%= row[:thing].image_url(:small) %>" title="<%= row[:thing].title %>" href="<%= thing_path(row[:thing]) %>">&nbsp</a>
   <% end %>
 </div>
 

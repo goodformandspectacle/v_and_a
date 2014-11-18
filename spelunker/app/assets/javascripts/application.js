@@ -13,3 +13,26 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(document).ready(function() {
+  $("#sketch-container a.block").hover(function(e) {
+    // get the image data
+    if(this.dataset.smallUrl) {
+      console.log(this.dataset.smallUrl);
+      var img = document.createElement('img');  
+      img.className = 'popover';
+      img.src = this.dataset.smallUrl;
+      //img.style = "top: " + e.pageY + "px; left: " + e.pageX + "px";
+      img.style.top = e.pageY + 'px';
+      img.style.left = e.pageX + 'px';
+      document.body.appendChild(img);  
+      console.log(e);
+      console.log(img);
+    }
+    
+    // display it by the cursor
+    // wax on
+  }, function() {
+    $(".popover").remove();
+  });
+});

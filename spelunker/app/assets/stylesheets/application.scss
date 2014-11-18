@@ -26,6 +26,7 @@
 
     &:hover, &:active {
       background: yellow !important;
+      text-decoration: none !important;
     }
 
     &.very_red {
@@ -51,3 +52,7 @@
   }
 }
 
+img.popover {
+  position: absolute;
+  display: block;
+}
