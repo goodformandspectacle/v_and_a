@@ -34,6 +34,7 @@ class Thing < ActiveRecord::Base
   def image_url(size=nil)
     sizes = {small: 's',
              medium: 'm',
+             square: 'ds',
              large: 'l'}
     if size
       size_suffix = "_jpg_#{sizes[size]}"

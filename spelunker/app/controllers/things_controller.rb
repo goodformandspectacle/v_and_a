@@ -3,6 +3,10 @@ class ThingsController < ApplicationController
     @things = Thing.paginate(page: params[:page])
   end
 
+  def list
+    @things = Thing.paginate(page: params[:page])
+  end
+
   def show
     @thing = Thing.find(params[:id])
   end
