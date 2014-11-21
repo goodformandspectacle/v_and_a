@@ -49,17 +49,19 @@ class Thing < ActiveRecord::Base
   end
 
   def image_url(size=nil)
-    sizes = {small: 's',
-             medium: 'm',
-             square: 'ds',
-             large: 'l'}
-    if size
-      size_suffix = "_jpg_#{sizes[size]}"
-    else
-      size_suffix = ""
+    if primary_image_id != ""
+      sizes = {small: 's',
+               medium: 'm',
+               square: 'ds',
+               large: 'l'}
+      if size
+        size_suffix = "_jpg_#{sizes[size]}"
+      else
+        size_suffix = ""
+      end
+      # http://media.vam.ac.uk/media/thira/collection_images/2009BX/2009BX7717_jpg_l.jpg 
+      "http://media.vam.ac.uk/media/thira/collection_images/#{primary_image_id[0,6]}/#{primary_image_id}#{size_suffix}.jpg"
     end
-    # http://media.vam.ac.uk/media/thira/collection_images/2009BX/2009BX7717_jpg_l.jpg 
-    "http://media.vam.ac.uk/media/thira/collection_images/#{primary_image_id[0,6]}/#{primary_image_id}#{size_suffix}.jpg"
   end
 
   def completeness
