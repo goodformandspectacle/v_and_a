@@ -58,5 +58,9 @@ class FacetsController < ApplicationController
 
     @object_type = object_types.sort_by { rand }.first
     @things = Thing.where(object: @object_type).limit(10).select {|t| t.primary_image_id != ""}
+    while @things.size == 0
+      @object_type = object_types.sort_by { rand }.first
+      @things = Thing.where(object: @object_type).limit(10).select {|t| t.primary_image_id != ""}
+    end
   end
 end
