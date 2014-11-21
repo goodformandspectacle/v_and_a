@@ -15,7 +15,11 @@ body.dark {
   background: black;
 }
 
-#sketch-header {
+#header {
+
+}
+
+#object-dates {
   font-weight: bold;
   border-right: 1px solid #ccc;
   width: 960px;
@@ -27,9 +31,10 @@ body.dark {
     float:right;
     padding-right: 5px;
   }
+  color:yellow;
 }
 
-#accession-header {
+#accession-dates {
   font-weight: bold;
   width: 162px;
   float: left;
@@ -40,6 +45,7 @@ body.dark {
   .end {
     float:right;
   }
+  color:cyan;
 }
 
 #sketch-container {
