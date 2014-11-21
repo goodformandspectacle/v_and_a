@@ -112,13 +112,11 @@ body.dark {
     }
     &.highlight {
       border: 5px solid cyan;
+      margin-top: -3px;
+      margin-left: -3px;
     }
     &.missing {
       background: darkred;
-    }
-    &:hover, &:active {
-      border: 5px solid cyan;
-      text-decoration: none !important;
     }
   }
 }
