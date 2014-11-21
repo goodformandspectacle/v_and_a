@@ -1,6 +1,4 @@
-#sticky {
-}
-#sticky.stick {
+.stickable.stick {
     position: fixed;
     top: 0;
     z-index: 10000;
