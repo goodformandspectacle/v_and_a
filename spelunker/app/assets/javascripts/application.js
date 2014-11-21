@@ -42,13 +42,16 @@ $(document).ready(function() {
 
     var thing = $("#thing-"+thingId)[0];
 
-    if(thing.dataset.smallUrl) {
+    if(thing.dataset.smallUrl && thing.dataset.smallUrl != '') {
       var img = document.createElement('img');  
       img.className = 'popover';
       img.src = thing.dataset.smallUrl;
       //img.style = "top: " + e.pageY + "px; left: " + e.pageX + "px";
       img.style.top = e.pageY + 10 +  'px';
       img.style.left = e.pageX + 10 + 'px';
+      img.style.width = '75px';
+      img.style.height = '75px';
+      
       document.body.appendChild(img);  
     }
   }, function(e) {
