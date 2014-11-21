@@ -19,7 +19,8 @@ Spelunker::Application.routes.draw do
     end
   end
 
-  get 'sketches/completeness/:start/:end', to: 'sketches#completeness'
+  get 'completeness/:start/:end', to: 'sketches#completeness'
+  get 'completeness', to: 'sketches#completeness', as: 'completeness'
 
   root to: 'things#index'
 end
