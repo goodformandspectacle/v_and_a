@@ -20,14 +20,17 @@
   <button type="submit" class="btn btn-default">Show data between these years</button>
 </form>
 
-<div id="sketch-header">
-  <div class='start'><%= @min_year_start %></div>
-  <div class='end'><%= @max_year_end %></div>
-</div>
+<div id="sticky-anchor"></div>
+<div id="header sticky">
+	<div id="object-dates">
+	  <div class='start'><%= @min_year_start %></div>
+  	  <div class='end'><%= @max_year_end %></div>
+	</div>
 
-<div id="accession-header">
-  <div class='start'>1852</div>
-  <div class='end'>2014</div>
+	<div id="accession-dates">
+	  <div class='start'>1852</div>
+	  <div class='end'>2014</div>
+	</div>
 </div>
 
 <div class='clear'></div>
