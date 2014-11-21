@@ -22,5 +22,7 @@ Spelunker::Application.routes.draw do
   get 'completeness/:start/:end', to: 'sketches#completeness'
   get 'completeness', to: 'sketches#completeness', as: 'completeness'
 
+  resource :about, :controller => 'about'
+
   root to: 'things#index'
 end
