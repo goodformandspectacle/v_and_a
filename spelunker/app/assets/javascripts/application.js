@@ -36,6 +36,7 @@ $(document).ready(function() {
   });
 
   $("#accessions .accession").hover(function(e) {
+    $(this).addClass('highlight');
     var thingId = this.dataset.thingId;
     $("#thing-"+thingId).addClass('forcehover');
 
