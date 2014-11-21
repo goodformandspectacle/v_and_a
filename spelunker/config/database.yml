@@ -14,7 +14,7 @@ development:
 
 production:
   adapter: mysql2
-  encoding: unicode
+  encoding: utf8
   database: <%= ENV['RDS_DB_NAME'] %>
   username: <%= ENV['RDS_USERNAME'] %>
   password: <%= ENV['RDS_PASSWORD'] %>
