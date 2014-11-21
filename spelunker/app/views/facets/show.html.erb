@@ -12,7 +12,7 @@
       <% unless v.first.blank? %>
         <tr>
           <td><%= link_to v.first, facet_thing_path(@facet, v.first) %></td>
-          <td><%= v.last %></td>
+          <td><%= number_with_delimiter(v.last, delimiter: ',') %></td>
         </tr>
       <% end %>
     <% end %>

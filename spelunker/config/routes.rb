@@ -1,5 +1,9 @@
 Spelunker::Application.routes.draw do
-  resources :facets
+  resources :facets do
+    collection do
+      get 'random_object'
+    end
+  end
   get 'facets/:facet_id/:id', to: 'facets#things', as: :facet_thing
 
   resources :things do
@@ -24,5 +28,5 @@ Spelunker::Application.routes.draw do
 
   resource :about, :controller => 'about'
 
-  root to: 'things#index'
+  root to: 'facets#random_object'
 end

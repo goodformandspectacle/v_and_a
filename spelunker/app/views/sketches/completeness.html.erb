@@ -1,7 +1,7 @@
 <% content_for :bodyclass do %>dark<%end%>
 
 <div id="explanation">
-  <p>This covers <b><%= @rows.count %></b> objects from <b><%= @min_year_start %></b> to <b><%= @max_year_end %></b></p>
+  <p>This covers <b><%= number_with_delimiter(@rows.count, delimiter:',') %></b> objects from <b><%= @min_year_start %></b> to <b><%= @max_year_end %></b></p>
 </div>
 
 <form class="form-inline" role="form" method='get' action='<%= completeness_path %>'>
