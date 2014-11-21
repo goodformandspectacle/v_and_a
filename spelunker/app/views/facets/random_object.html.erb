@@ -1,0 +1,6 @@
+<h1>Ooh look, <%= @things.size.humanize %> <%= "random #{@object_type.downcase}".pluralize(@things.size) %>. <%= link_to "AGAIN!", root_path %></h1>
+
+<%= render partial: 'things/imageList', locals: {things: @things} %>
+
+
+

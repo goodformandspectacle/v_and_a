@@ -23,6 +23,40 @@ class FacetsController < ApplicationController
 
   def things
     @things = Thing.where(params[:facet_id] => URI.decode(params[:id])).paginate(page: params[:page])
-    "/facets/materials_tecniques/whatever"
+  end
+
+  def random_object
+    object_types = ['Print',
+                    'photograph',
+                    'Drawing',
+                    'Fashion design',
+                    'Poster',
+                    'Woodblock print',
+                    'Design',
+                    'Object',
+                    'Painting',
+                    'Sample',
+                    'Photographic negative',
+                    'Wallpaper',
+                    'Furnishing fabric',
+                    'Fragment',
+                    'Watercolour',
+                    'Tile',
+                    'Costume design',
+                    'Page',
+                    'Textile design',
+                    'Brass rubbing',
+                    'Vase',
+                    'Dish',
+                    'Sketchbook',
+                    'Bowl',
+                    'Plate',
+                    'Model',
+                    'Border',
+                    'Panel',
+                    "Figure"]
+
+    @object_type = object_types.sort_by { rand }.first
+    @things = Thing.where(object: @object_type).limit(10).select {|t| t.primary_image_id != ""}
   end
 end
