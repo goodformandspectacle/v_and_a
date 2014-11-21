@@ -1,3 +1,9 @@
+.navbar-brand {
+	font-weight: bold;
+	background-color: black;
+	padding:3px;
+	margin-left: 5px;
+}
 .stickable.stick {
     position: fixed;
     top: 0;
