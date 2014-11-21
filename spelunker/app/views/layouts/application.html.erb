@@ -26,8 +26,11 @@
 
   ga('create', 'UA-52335255-3', 'auto');
   ga('send', 'pageview');
-
 </script>
+
+<!-- Hi ShareThis -->
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "bb4cd9ea-5610-4b49-b168-e70dae80da83", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
     
   </head>
   <body class='<%= yield :bodyclass %>'>
@@ -35,7 +38,11 @@
     <div class="container">
       <%= yield %>
       <div id="footer">
-        Brought to you by <a href="http://goodformandspectacle.com">Good, Form & Spectacle</a>
+        <span class='st_pinterest' displayText='Pinterest'></span>
+		<span class='st_facebook' displayText='Facebook'></span>
+		<span class='st_twitter' displayText='Tweet'></span>
+
+		&nbsp;&nbsp;|&nbsp;&nbsp;Brought to you by <a href="http://goodformandspectacle.com">Good, Form & Spectacle</a>
       </div>
     </div>
   </body>
