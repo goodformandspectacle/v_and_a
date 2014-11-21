@@ -8,7 +8,7 @@
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <title>
       <%= yield :pagetitle %>
-      V&amp;A Sketch
+      V&amp;A Spelunker
     </title>
     <%= stylesheet_link_tag 'application' %>
     <%= javascript_include_tag 'application' %>
@@ -30,6 +30,9 @@
     <%= render 'layouts/nav' %>
     <div class="container">
       <%= yield %>
+    </div>
+    <div class="footer">
+    	Brought to you by <a href="http://goodformandspectacle.com">Good, Form & Spectacle</a>
     </div>
   </body>
 </html>
