@@ -19,6 +19,17 @@ body.dark {
 
 }
 
+#footer {
+  border-top: 1px solid #ccc;
+  margin-top: 10px;
+  padding-top: 5px;
+  font-size: 85%;
+}
+
+#explanation {
+  color: #aaa;
+}
+
 #object-dates {
   font-weight: bold;
   border-right: 1px solid #ccc;
@@ -124,4 +135,6 @@ body.dark {
 img.popover {
   position: absolute;
   display: block;
+  max-width: 75px;
+  max-height: 75px;
 }

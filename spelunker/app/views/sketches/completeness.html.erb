@@ -1,10 +1,12 @@
 <% content_for :bodyclass do %>dark<%end%>
 
+<h1>Date Graph</h1>
+
 <div id="explanation">
-  <p>This covers <b><%= @rows.count %></b> objects from <b><%= @min_year_start %></b> to <b><%= @max_year_end %></b></p>
+  <p>You're looking at <b><%= @rows.count %></b> objects made between <b><%= @min_year_start %></b> to <b><%= @max_year_end %></b>.</p>
 </div>
 
-<form class="form-inline" role="form" method='get' action='<%= completeness_sketches_path %>'>
+<form class="form-inline" role="form" method='get' action='<%= completeness_path %>'>
   <div class="form-group">
     <div class="input-group">
       <label class="sr-only" for="startyearfield">Start year</label>
@@ -17,7 +19,7 @@
       <input value="<%= params[:end] %>" type="text" class="form-control" id="endyearfield" name='end' placeholder="End year">
     </div>
   </div>
-  <button type="submit" class="btn btn-default">Show data between these years</button>
+  <button type="submit" class="btn btn-default">Refresh</button>
 </form>
 
 <div id="sticky-anchor"></div>
@@ -37,7 +39,7 @@
 
 <div id="sketch-container">
   <% @rows.each_with_index do |row,i| %>
-    <a class='block <%= row[:yellowness] %>' id='thing-<%= row[:thing].id %>'style="top: <%= i*3 %>px; left: <%= row[:start] %>px; width: <%= row[:width] %>px;" data-title="<%= row[:thing].title %>" data-thing-id="<%= row[:thing].id %>" data-small-url="<%= row[:thing].image_url(:small) %>" title="<%= row[:thing].title %>" href="<%= thing_path(row[:thing]) %>">&nbsp</a>
+    <a class='block <%= row[:yellowness] %>' id='thing-<%= row[:thing].id %>'style="top: <%= i*3 %>px; left: <%= row[:start] %>px; width: <%= row[:width] %>px;" data-title="<%= row[:thing].title %>" data-thing-id="<%= row[:thing].id %>" data-small-url="<%= row[:thing].image_url(:small) || asset_path('missing-image.png') %>" title="<%= row[:thing].title %>" href="<%= thing_path(row[:thing]) %>">&nbsp</a>
   <% end %>
 </div>
 
