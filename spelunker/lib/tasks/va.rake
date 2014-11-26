@@ -1,3 +1,4 @@
+require 'csv'
 require 'oily_png'
 
 class Numeric
@@ -7,6 +8,69 @@ class Numeric
 end
 
 namespace :va do
+  desc 'generate places'
+  task :generate_places => :environment do
+    # make these conditional
+    system 'rm places.csv' if File.exists? 'places.csv'
+    system 'rm place_things.csv' if File.exists? 'place_things.csv'
+    places = []
+    place_things = []
+    bar = ProgressBar.create(:title => "Places", 
+                             :starting_at => 0, 
+                             :total => Thing.all.count,
+                             :format => '%a |%b>>%i| %p%% %t')
+    Thing.find_each do |thing|
+      if !places.include?(thing.place)
+        places << thing.place
+      end
+
+      place_things[thing.id] = places.index(thing.place)
+
+      bar.increment
+    end
+    bar.finish
+
+    puts "places is #{places.length} long"
+    puts "place_things is #{place_things.length} long"
+
+    puts "Making places.csv"
+    CSV.open("places.csv", "wb") do |csv|
+      places.each_with_index do |place, index|
+        csv << [index+1,place]
+      end
+    end
+
+    # make place_things.csv
+    puts "Making place_things.csv"
+    CSV.open("place_things.csv", "wb") do |csv|
+      place_things.each_with_index do |place, index|
+        if place
+          csv << [place+1, index]
+        end
+      end
+    end
+
+    puts "Deleting old places"
+    Place.delete_all
+    puts "Ingesting places from CSV"
+    ActiveRecord::Base.connection.execute("
+      LOAD DATA INFILE '#{Dir.pwd}/places.csv'
+      INTO TABLE places
+      FIELDS TERMINATED BY ','
+      OPTIONALLY ENCLOSED BY '\"'
+      (id, name);")
+
+    puts "Deleting old placethings"
+    PlaceThing.delete_all
+    puts "Ingesting place_things from CSV"
+    ActiveRecord::Base.connection.execute("
+      LOAD DATA INFILE '#{Dir.pwd}/place_things.csv'
+      INTO TABLE place_things
+      FIELDS TERMINATED BY ','
+      OPTIONALLY ENCLOSED BY '\"'
+      (place_id, thing_id);")
+  end
+
   desc 'spit out a data file for gnuplot'
   task :test_plot => :environment do
     width = 2000
