@@ -1,0 +1,9 @@
+<h1><%= link_to 'Facets', facets_path %> / Materials & Techniques / <%= @material_technique.name %></h1>
+
+<%= render partial: 'things/table', locals: {things: @material_technique_things.map(&:thing)} %>
+
+<%= will_paginate @material_technique_things %>
+
+
+
+

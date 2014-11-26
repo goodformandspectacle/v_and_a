@@ -1,6 +1,5 @@
 class PlacesController < ApplicationController
   def index
-
     @placethings = PlaceThing.joins(:place).group(:place_id).select("places.id, places.name, count(*) as count").order('count desc').paginate(page: params[:page])
   end
 

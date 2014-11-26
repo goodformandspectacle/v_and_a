@@ -30,6 +30,7 @@ Spelunker::Application.routes.draw do
 
   # new facet replacements
   resources :places
+  resources :materials_techniques
 
   root to: 'facets#random_object'
 end

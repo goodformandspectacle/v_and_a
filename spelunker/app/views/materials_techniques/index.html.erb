@@ -1,0 +1,21 @@
+<h1><a href="/facets">Facets</a> / Materials & Techniques</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Material / Technique</th>
+      <th># here
+    </tr>
+  </thead>
+  <tbody>
+    <% for mt in @material_technique_things %>
+      <tr>
+        <td><%= link_to mt.name, materials_technique_path(id: mt.name) %></td>
+        <td><%= mt.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @material_technique_things %>
+

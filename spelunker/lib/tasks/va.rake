@@ -71,6 +71,71 @@ namespace :va do
       (place_id, thing_id);")
   end
 
+  # ---
+  #
+  desc 'generate material_techniques'
+  task :generate_mts => :environment do
+    # make these conditional
+    system 'rm mts.csv' if File.exists? 'mts.csv'
+    system 'rm mt_things.csv' if File.exists? 'mt_things.csv'
+    mts = []
+    mt_things = []
+    bar = ProgressBar.create(:title => "M&Ts", 
+                             :starting_at => 0, 
+                             :total => Thing.all.count,
+                             :format => '%a |%b>>%i| %p%% %t')
+    Thing.find_each do |thing|
+      if !mts.include?(thing.materials_techniques)
+        mts << thing.materials_techniques
+      end
+
+      mt_things[thing.id] = mts.index(thing.materials_techniques)
+
+      bar.increment
+    end
+    bar.finish
+
+    puts "mts is #{mts.length} long"
+    puts "mt_things is #{mt_things.length} long"
+
+    puts "Making mts.csv"
+    CSV.open("mts.csv", "wb") do |csv|
+      mts.each_with_index do |mt, index|
+        csv << [index+1,mt]
+      end
+    end
+
+    # make mt_things.csv
+    puts "Making mt_things.csv"
+    CSV.open("mt_things.csv", "wb") do |csv|
+      mt_things.each_with_index do |mt, index|
+        if mt
+          csv << [mt+1, index]
+        end
+      end
+    end
+
+    puts "Deleting old material_techniques"
+    MaterialTechnique.delete_all
+    puts "Ingesting material_techniques from CSV"
+    ActiveRecord::Base.connection.execute("
+      LOAD DATA INFILE '#{Dir.pwd}/mts.csv'
+      INTO TABLE material_techniques
+      FIELDS TERMINATED BY ','
+      OPTIONALLY ENCLOSED BY '\"'
+      (id, name);")
+
+    puts "Deleting old material_technique_things"
+    MaterialTechniqueThing.delete_all
+    puts "Ingesting material_technique_things from CSV"
+    ActiveRecord::Base.connection.execute("
+      LOAD DATA INFILE '#{Dir.pwd}/mt_things.csv'
+      INTO TABLE material_technique_things
+      FIELDS TERMINATED BY ','
+      OPTIONALLY ENCLOSED BY '\"'
+      (material_technique_id, thing_id);")
+  end
+
   desc 'spit out a data file for gnuplot'
   task :test_plot => :environment do
     width = 2000

@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141125174353) do
+ActiveRecord::Schema.define(version: 20141126161653) do
+
+  create_table "material_technique_things", force: true do |t|
+    t.integer  "material_technique_id"
+    t.integer  "thing_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "material_technique_things", ["material_technique_id"], name: "index_material_technique_things_on_material_technique_id", using: :btree
+  add_index "material_technique_things", ["thing_id"], name: "index_material_technique_things_on_thing_id", using: :btree
+
+  create_table "material_techniques", force: true do |t|
+    t.text     "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "place_things", force: true do |t|
     t.integer  "place_id"

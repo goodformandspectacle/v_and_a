@@ -4,6 +4,9 @@ class Thing < ActiveRecord::Base
   has_many :place_things
   has_many :places, :through => :place_things
 
+  has_many :material_technique_things
+  has_many :material_techniques, :through => :material_technique_things
+
   # Dusen stuff
   search_syntax do
     search_by :text do |scope, phrases|
