@@ -1,6 +1,9 @@
 class Thing < ActiveRecord::Base
   self.table_name = 'va_collection_museumobject'
 
+  has_many :place_things
+  has_many :places, :through => :place_things
+
   # Dusen stuff
   search_syntax do
     search_by :text do |scope, phrases|

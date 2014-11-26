@@ -10,7 +10,7 @@
     </tr>
   </thead>
   <tbody>
-    <% for thing in @things %>
+    <% for thing in things %>
       <%= render partial: 'things/table_row', locals: {thing: thing} %>
     <% end %>
   </tbody>

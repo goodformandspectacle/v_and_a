@@ -28,5 +28,8 @@ Spelunker::Application.routes.draw do
 
   resource :about, :controller => 'about'
 
+  # new facet replacements
+  resources :places
+
   root to: 'facets#random_object'
 end

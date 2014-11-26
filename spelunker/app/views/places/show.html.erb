@@ -1,0 +1,9 @@
+<h1><%= link_to 'Facets', facets_path %> / Places / <%= @place.name %></h1>
+
+<%= render partial: 'things/table', locals: {things: @placethings.map(&:thing)} %>
+
+<%= will_paginate @placethings %>
+
+
+
+

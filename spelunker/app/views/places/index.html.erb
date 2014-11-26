@@ -1,0 +1,21 @@
+<h1><a href="/facets">Facets</a> / Places</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Place</th>
+      <th># here
+    </tr>
+  </thead>
+  <tbody>
+    <% for placething in @placethings %>
+      <tr>
+        <td><%= link_to placething.name, place_path(id: placething.name) %></td>
+        <td><%= placething.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @placethings %>
+
