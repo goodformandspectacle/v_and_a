@@ -53,7 +53,7 @@ namespace :va do
     end
   end
 
-  task :ingest_places_csv => :environment
+  task :ingest_places_csv => :environment do
     puts "Deleting old places"
     Place.delete_all
     puts "Ingesting places from CSV"
