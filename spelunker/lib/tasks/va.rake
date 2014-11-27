@@ -59,7 +59,7 @@ namespace :va do
     Place.delete_all
     puts "Ingesting places from CSV"
     ActiveRecord::Base.connection.execute("
-      LOAD DATA INFILE '#{Dir.pwd}/places.csv'
+      LOAD DATA LOCAL INFILE '#{Dir.pwd}/places.csv'
       INTO TABLE places
       FIELDS TERMINATED BY ','
       OPTIONALLY ENCLOSED BY '\"'
@@ -69,7 +69,7 @@ namespace :va do
     PlaceThing.delete_all
     puts "Ingesting place_things from CSV"
     ActiveRecord::Base.connection.execute("
-      LOAD DATA INFILE '#{Dir.pwd}/place_things.csv'
+      LOAD DATA LOCAL INFILE '#{Dir.pwd}/place_things.csv'
       INTO TABLE place_things
       FIELDS TERMINATED BY ','
       OPTIONALLY ENCLOSED BY '\"'
@@ -127,7 +127,7 @@ namespace :va do
     MaterialTechnique.delete_all
     puts "Ingesting material_techniques from CSV"
     ActiveRecord::Base.connection.execute("
-      LOAD DATA INFILE '#{Dir.pwd}/mts.csv'
+      LOAD DATA LOCAL INFILE '#{Dir.pwd}/mts.csv'
       INTO TABLE material_techniques
       FIELDS TERMINATED BY ','
       OPTIONALLY ENCLOSED BY '\"'
@@ -137,7 +137,7 @@ namespace :va do
     MaterialTechniqueThing.delete_all
     puts "Ingesting material_technique_things from CSV"
     ActiveRecord::Base.connection.execute("
-      LOAD DATA INFILE '#{Dir.pwd}/mt_things.csv'
+      LOAD DATA LOCAL INFILE '#{Dir.pwd}/mt_things.csv'
       INTO TABLE material_technique_things
       FIELDS TERMINATED BY ','
       OPTIONALLY ENCLOSED BY '\"'
