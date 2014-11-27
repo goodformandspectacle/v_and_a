@@ -1,8 +1,8 @@
 Spelunker::Application.routes.draw do
   get 'facets/place', to: 'places#index'
   get 'facets/place/:id', to: 'places#show'
-  #get 'facets/materials_techniques', to: 'materials_techniques#index'
-  #get 'facets/materials_techniques/:id', to: 'materials_techniques#show'
+  get 'facets/materials_techniques', to: 'materials_techniques#index'
+  get 'facets/materials_techniques/:id', to: 'materials_techniques#show'
 
   resources :facets do
     collection do
