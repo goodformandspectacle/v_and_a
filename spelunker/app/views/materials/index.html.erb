@@ -1,0 +1,21 @@
+<h1><a href="/facets">Facets</a> / Materials</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Material</th>
+      <th># here
+    </tr>
+  </thead>
+  <tbody>
+    <% for mat in @material_things %>
+      <tr>
+        <td><%= link_to mat.name, materials_path(id: mat.name) %></td>
+        <td><%= mat.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @material_things %>
+

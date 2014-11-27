@@ -144,7 +144,74 @@ namespace :va do
       (material_technique_id, thing_id);")
   end
 
-  # TODO: model materials
+  desc 'generate materials'
+  task :generate_materials => [:generate_materials_csv, :ingest_materials_csv]
+
+  task :generate_materials_csv => :environment do
+    # make these conditional
+    system 'rm materials.csv' if File.exists? 'materials.csv'
+    system 'rm material_things.csv' if File.exists? 'material_things.csv'
+    materials = []
+    material_things = []
+    bar = ProgressBar.create(:title => "M&Ts", 
+                             :starting_at => 0, 
+                             :total => Thing.all.count,
+                             :format => '%a |%b>>%i| %p%% %t')
+    Thing.find_each do |thing|
+      next if thing.material_techniques.blank?
+      if !materials.include?(thing.materials_techniques)
+        materials << thing.materials_techniques
+      end
+
+      material_things[thing.id] = materials.index(thing.materials_techniques)
+
+      bar.increment
+    end
+    bar.finish
+
+    puts "materials is #{materials.length} long"
+    puts "material_things is #{material_things.length} long"
+
+    puts "Making materials.csv"
+    CSV.open("materials.csv", "wb") do |csv|
+      materials.each_with_index do |mt, index|
+        csv << [index+1,mt]
+      end
+    end
+
+    # make material_things.csv
+    puts "Making material_things.csv"
+    CSV.open("material_things.csv", "wb") do |csv|
+      material_things.each_with_index do |mt, index|
+        if mt
+          csv << [mt+1, index]
+        end
+      end
+    end
+  end
+
+  task :ingest_materials_csv => :environment do
+    puts "Deleting old materials"
+    Material.delete_all
+    puts "Ingesting materials from CSV"
+    ActiveRecord::Base.connection.execute("
+      LOAD DATA LOCAL INFILE '#{Dir.pwd}/materials.csv'
+      INTO TABLE materials
+      FIELDS TERMINATED BY ','
+      OPTIONALLY ENCLOSED BY '\"'
+      (id, name);")
+
+    puts "Deleting old material_things"
+    MaterialThing.delete_all
+    puts "Ingesting material_things from CSV"
+    ActiveRecord::Base.connection.execute("
+      LOAD DATA LOCAL INFILE '#{Dir.pwd}/material_things.csv'
+      INTO TABLE material_things
+      FIELDS TERMINATED BY ','
+      OPTIONALLY ENCLOSED BY '\"'
+      (material_id, thing_id);")
+  end
+
   # TODO: model techniques
 
   desc 'spit out a data file for gnuplot'
