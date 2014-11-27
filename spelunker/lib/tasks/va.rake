@@ -9,7 +9,9 @@ end
 
 namespace :va do
   desc 'generate places'
-  task :generate_places => :environment do
+  task :generate_places => [:generate_places_csv, :ingest_places_csv]
+
+  task :generate_places_csv => :environment do
     # make these conditional
     system 'rm places.csv' if File.exists? 'places.csv'
     system 'rm place_things.csv' if File.exists? 'place_things.csv'
@@ -49,7 +51,9 @@ namespace :va do
         end
       end
     end
+  end
 
+  task :ingest_places_csv => :environment
     puts "Deleting old places"
     Place.delete_all
     puts "Ingesting places from CSV"
@@ -71,10 +75,10 @@ namespace :va do
       (place_id, thing_id);")
   end
 
-  # ---
-  #
   desc 'generate material_techniques'
-  task :generate_mts => :environment do
+  task :generate_mts => [:generate_mts_csv, :ingest_mts_csv]
+
+  task :generate_mts_csv => :environment do
     # make these conditional
     system 'rm mts.csv' if File.exists? 'mts.csv'
     system 'rm mt_things.csv' if File.exists? 'mt_things.csv'
@@ -114,7 +118,9 @@ namespace :va do
         end
       end
     end
+  end
 
+  task :ingest_mts_csv => :environment do
     puts "Deleting old material_techniques"
     MaterialTechnique.delete_all
     puts "Ingesting material_techniques from CSV"
