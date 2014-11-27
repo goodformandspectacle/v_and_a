@@ -22,6 +22,7 @@ namespace :va do
                              :total => Thing.all.count,
                              :format => '%a |%b>>%i| %p%% %t')
     Thing.find_each do |thing|
+      next if thing.place.blank?
       if !places.include?(thing.place)
         places << thing.place
       end
@@ -89,6 +90,7 @@ namespace :va do
                              :total => Thing.all.count,
                              :format => '%a |%b>>%i| %p%% %t')
     Thing.find_each do |thing|
+      next if thing.material_techniques.blank?
       if !mts.include?(thing.materials_techniques)
         mts << thing.materials_techniques
       end
@@ -141,6 +143,9 @@ namespace :va do
       OPTIONALLY ENCLOSED BY '\"'
       (material_technique_id, thing_id);")
   end
+
+  # TODO: model materials
+  # TODO: model techniques
 
   desc 'spit out a data file for gnuplot'
   task :test_plot => :environment do
