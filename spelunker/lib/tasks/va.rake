@@ -8,6 +8,9 @@ class Numeric
 end
 
 namespace :va do
+  desc 'generate all derived tables for normalization'
+  task :generate_all => [:generate_places, :generate_mts, :generate_materials, :generate_techniques]
+
   desc 'generate places'
   task :generate_places => [:generate_places_csv, :ingest_places_csv]
 
