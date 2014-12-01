@@ -153,17 +153,17 @@ namespace :va do
     system 'rm material_things.csv' if File.exists? 'material_things.csv'
     materials = []
     material_things = []
-    bar = ProgressBar.create(:title => "M&Ts", 
+    bar = ProgressBar.create(:title => "Mats", 
                              :starting_at => 0, 
                              :total => Thing.all.count,
                              :format => '%a |%b>>%i| %p%% %t')
     Thing.find_each do |thing|
-      next if thing.material_techniques.blank?
-      if !materials.include?(thing.materials_techniques)
-        materials << thing.materials_techniques
+      next if thing['materials'].blank?
+      if !materials.include?(thing['materials'])
+        materials << thing['materials']
       end
 
-      material_things[thing.id] = materials.index(thing.materials_techniques)
+      material_things[thing.id] = materials.index(thing['materials'])
 
       bar.increment
     end

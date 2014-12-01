@@ -10,7 +10,7 @@
   <tbody>
     <% for mat in @material_things %>
       <tr>
-        <td><%= link_to mat.name, materials_path(id: mat.name) %></td>
+        <td><%= link_to mat.name, material_path(id: mat.name) %></td>
         <td><%= mat.count %></td>
       </tr>
     <% end %>
