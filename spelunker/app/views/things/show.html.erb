@@ -24,7 +24,7 @@
       <dt><%= field %></dt>
       <dd>
         <% if Facet.all.include?(field) && !@thing[field].blank? %>
-          <%= link_to @thing[field], facet_thing_path(field, @thing(field)) %>
+          <%= link_to @thing[field], facet_thing_path(field, @thing[field]) %>
         <% else %>
           <%= @thing[field] %>
         <% end %>
