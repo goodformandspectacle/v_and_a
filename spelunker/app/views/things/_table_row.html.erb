@@ -10,7 +10,11 @@
       <% if Facet.all.include?(field) && !thing[field].blank? %>
         <%= link_to thing[field], facet_thing_path(field, thing[field]) %>
       <% else %>
+        <% if Thing.truncatable_fields.include? field %>
+        <%= thing[field].truncate(100, separator: ' ') %>
+        <% else %>
         <%= thing[field] %>
+        <% end %>
       <% end %>
     </td>
   <% end %>

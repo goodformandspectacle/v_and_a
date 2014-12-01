@@ -21,6 +21,12 @@ class Thing < ActiveRecord::Base
     end
   end
 
+  # utility stuff
+  
+  def self.truncatable_fields
+    %w{history_note physical_description descriptive_line public_access_description marks label historical_context_note bibliography attributions_note production_note}
+  end
+
   # counting stuff
 
   def self.number_with(field)
