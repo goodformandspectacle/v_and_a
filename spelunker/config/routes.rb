@@ -3,6 +3,8 @@ Spelunker::Application.routes.draw do
   get 'facets/place/:id', to: 'places#show'
   get 'facets/materials', to: 'materials#index'
   get 'facets/materials/:id', to: 'materials#show'
+  get 'facets/techniques', to: 'techniques#index'
+  get 'facets/techniques/:id', to: 'techniques#show'
   get 'facets/materials_techniques', to: 'materials_techniques#index'
   get 'facets/materials_techniques/:id', to: 'materials_techniques#show'
 
@@ -39,6 +41,7 @@ Spelunker::Application.routes.draw do
   resources :places
   resources :materials_techniques
   resources :materials
+  resources :techniques
 
   root to: 'facets#random_object'
 end

@@ -1,0 +1,21 @@
+<h1><a href="/facets">Facets</a> / Techniques</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Technique</th>
+      <th># here
+    </tr>
+  </thead>
+  <tbody>
+    <% for technique in @technique_things %>
+      <tr>
+        <td><%= link_to technique.name, technique_path(id: technique.name) %></td>
+        <td><%= technique.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @technique_things %>
+

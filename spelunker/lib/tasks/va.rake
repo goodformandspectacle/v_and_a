@@ -213,6 +213,73 @@ namespace :va do
   end
 
   # TODO: model techniques
+  desc 'generate techniques'
+  task :generate_techniques => [:generate_techniques_csv, :ingest_techniques_csv]
+
+  task :generate_techniques_csv => :environment do
+    # make these conditional
+    system 'rm techniques.csv' if File.exists? 'techniques.csv'
+    system 'rm technique_things.csv' if File.exists? 'technique_things.csv'
+    techniques = []
+    technique_things = []
+    bar = ProgressBar.create(:title => "Techniques", 
+                             :starting_at => 0, 
+                             :total => Thing.all.count,
+                             :format => '%a |%b>>%i| %p%% %t')
+    Thing.find_each do |thing|
+      next if thing['techniques'].blank?
+      if !techniques.include?(thing['techniques'])
+        techniques << thing['techniques']
+      end
+
+      technique_things[thing.id] = techniques.index(thing['techniques'])
+
+      bar.increment
+    end
+    bar.finish
+
+    puts "techniques is #{techniques.length} long"
+    puts "technique_things is #{technique_things.length} long"
+
+    puts "Making techniques.csv"
+    CSV.open("techniques.csv", "wb") do |csv|
+      techniques.each_with_index do |tech, index|
+        csv << [index+1,tech]
+      end
+    end
+
+    # make technique_things.csv
+    puts "Making technique_things.csv"
+    CSV.open("technique_things.csv", "wb") do |csv|
+      technique_things.each_with_index do |tech, index|
+        if tech
+          csv << [tech+1, index]
+        end
+      end
+    end
+  end
+
+  task :ingest_techniques_csv => :environment do
+    puts "Deleting old techniques"
+    Technique.delete_all
+    puts "Ingesting techniques from CSV"
+    ActiveRecord::Base.connection.execute("
+      LOAD DATA LOCAL INFILE '#{Dir.pwd}/techniques.csv'
+      INTO TABLE techniques
+      FIELDS TERMINATED BY ','
+      OPTIONALLY ENCLOSED BY '\"'
+      (id, name);")
+
+    puts "Deleting old technique_things"
+    TechniqueThing.delete_all
+    puts "Ingesting technique_things from CSV"
+    ActiveRecord::Base.connection.execute("
+      LOAD DATA LOCAL INFILE '#{Dir.pwd}/technique_things.csv'
+      INTO TABLE technique_things
+      FIELDS TERMINATED BY ','
+      OPTIONALLY ENCLOSED BY '\"'
+      (technique_id, thing_id);")
+  end
 
   desc 'spit out a data file for gnuplot'
   task :test_plot => :environment do

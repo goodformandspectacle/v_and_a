@@ -1,0 +1,5 @@
+<h1><%= link_to 'Facets', facets_path %> / <%= link_to "Techniques", facet_path('techniques') %> / <%= @technique.name %></h1>
+
+<%= render partial: 'things/table', locals: {things: @technique_things.map(&:thing)} %>
+
+<%= will_paginate @technique_things %>

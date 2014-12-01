@@ -7,6 +7,9 @@ class Thing < ActiveRecord::Base
   has_many :material_things
   has_many :materials, :through => :material_things
 
+  has_many :technique_things
+  has_many :techniques, :through => :technique_things
+
   has_many :material_technique_things
   has_many :material_techniques, :through => :material_technique_things
 
