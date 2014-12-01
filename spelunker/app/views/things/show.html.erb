@@ -23,10 +23,10 @@
     <% for field in Thing.attribute_names %>
       <dt><%= field %></dt>
       <dd>
-        <% if Facet.all.include?(field) && !@thing.send(field).blank? %>
-          <%= link_to @thing.send(field), facet_thing_path(field, @thing.send(field)) %>
+        <% if Facet.all.include?(field) && !@thing[field].blank? %>
+          <%= link_to @thing[field], facet_thing_path(field, @thing(field)) %>
         <% else %>
-          <%= @thing.send(field) %>
+          <%= @thing[field] %>
         <% end %>
       </dd>
     <% end %>
