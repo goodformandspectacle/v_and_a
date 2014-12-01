@@ -90,7 +90,7 @@ namespace :va do
                              :total => Thing.all.count,
                              :format => '%a |%b>>%i| %p%% %t')
     Thing.find_each do |thing|
-      next if thing.material_techniques.blank?
+      next if thing.materials_techniques.blank?
       if !mts.include?(thing.materials_techniques)
         mts << thing.materials_techniques
       end
