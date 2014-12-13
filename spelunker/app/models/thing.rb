@@ -86,7 +86,7 @@ class Thing < ActiveRecord::Base
     fields = Thing.attribute_names
     total = fields.size
 
-    filled_out_fields = fields.select {|f| !self.send(f).blank?}
+    filled_out_fields = fields.select {|f| !self[f].blank?}
     filled_out_fields.size.to_f / total
   end
 end
