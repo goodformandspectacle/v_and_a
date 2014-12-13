@@ -1,6 +1,6 @@
 class MaterialsTechniquesController < ApplicationController
   def index
-    @material_technique_things = MaterialTechniqueThing.joins(:material_technique).group(:material_technique_id).select("material_techniques.id, material_techniques.name, count(*) as count").order('count desc').paginate(page: params[:page])
+    @material_technique_things = MaterialTechniqueThing.joins(:material_technique).group("material_techniques.id").select("material_techniques.id, material_techniques.name, count(material_techniques.id) as count").order('count desc').paginate(page: params[:page])
   end
 
   def show
