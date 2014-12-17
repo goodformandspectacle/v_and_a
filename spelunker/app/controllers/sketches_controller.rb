@@ -23,9 +23,13 @@ class SketchesController < ApplicationController
     rows = []
 
     things.each do |thing|
-      scaled_start = thing.year_start.to_i.scale_between(@min_year_start,@max_year_end,0,width)
-      scaled_end = (thing.year_end.to_i + 1).scale_between(@min_year_start,@max_year_end,0,width)
+      scaled_start = thing.year_start.to_i.scale_between(@min_year_start,@max_year_end,0,100)
+      scaled_end = (thing.year_end.to_i + 1).scale_between(@min_year_start,@max_year_end,0,100)
       scaled_width = scaled_end - scaled_start
+
+      if thing.accession_year
+        accession_left = (thing.accession_year - 1852).to_f / (Time.now.year - 1852) * 100
+      end
 
       if thing.completeness > 0.65
         yellowness = 'very'
@@ -39,6 +43,7 @@ class SketchesController < ApplicationController
 
       t = {start: scaled_start,
            width: scaled_width,
+           accession_left: accession_left,
            yellowness: "#{yellowness}_yellow",
            thing: thing}
       rows << t
