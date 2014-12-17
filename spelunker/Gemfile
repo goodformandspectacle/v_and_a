@@ -22,6 +22,8 @@ gem 'jquery-rails'
 gem 'will_paginate', '~> 3.0'
 gem 'will_paginate-bootstrap'
 
+gem 'actionpack-action_caching'
+
 gem 'humanize'
 
 gem 'ruby-progressbar'
@@ -42,4 +44,5 @@ group :development do
   gem 'thin'
   gem 'capistrano-rails', '~> 1.1.1'
   gem 'capistrano-bundler', '~> 1.1.2'
+  gem "query_reviewer"
 end

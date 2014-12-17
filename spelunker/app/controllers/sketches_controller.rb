@@ -5,6 +5,8 @@ class Numeric
 end
 
 class SketchesController < ApplicationController
+  caches_action :completeness, :cache_path => Proc.new {|c| c.request.url }
+
   def completeness
     width = 960
     if params[:start] && params[:end]
