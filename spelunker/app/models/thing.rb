@@ -13,6 +13,9 @@ class Thing < ActiveRecord::Base
   has_many :material_technique_things
   has_many :material_techniques, :through => :material_technique_things
 
+  has_many :artist_things
+  has_many :artists, :through => :artist_things
+
   # Dusen stuff
   search_syntax do
     search_by :text do |scope, phrases|
