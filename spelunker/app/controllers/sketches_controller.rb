@@ -8,12 +8,15 @@ class SketchesController < ApplicationController
   def completeness
     width = 960
     if params[:start] && params[:end]
-      things = Thing.where("year_start > ?", params[:start].to_i).where("year_end <= ?", params[:end].to_i).limit(10000)
+      @min_year_start = params[:start].to_i
+      @max_year_end = params[:end].to_i
+
+      things = Thing.where("year_start >= ?", @min_year_start).where("year_end <= ?", @max_year_end).limit(5000)
     else
-      things = Thing.where("year_start != ''").where("year_end !=''").limit(10000)
+      things = Thing.where("year_start != ''").where("year_end !=''").limit(5000)
+      @min_year_start = things.min_by {|t| t.year_start.to_i}.year_start.to_i
+      @max_year_end = things.max_by {|t| t.year_end.to_i}.year_end.to_i
     end
-    @min_year_start = things.min_by {|t| t.year_start.to_i}.year_start.to_i
-    @max_year_end = things.max_by {|t| t.year_end.to_i}.year_end.to_i
 
     rows = []
 
