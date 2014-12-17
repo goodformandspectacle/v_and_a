@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141201151604) do
+ActiveRecord::Schema.define(version: 20141217182441) do
+
+  create_table "artist_things", force: true do |t|
+    t.integer  "artist_id"
+    t.integer  "thing_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "artist_things", ["artist_id"], name: "index_artist_things_on_artist_id", using: :btree
+  add_index "artist_things", ["thing_id"], name: "index_artist_things_on_thing_id", using: :btree
+
+  create_table "artists", force: true do |t|
+    t.string   "name",       limit: 500
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "material_technique_things", force: true do |t|
     t.integer  "material_technique_id"

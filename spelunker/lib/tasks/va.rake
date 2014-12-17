@@ -8,8 +8,9 @@ class Numeric
 end
 
 namespace :va do
+  # you almost certainly don't want to do this. It will take an age.
   desc 'generate all derived tables for normalization'
-  task :generate_all => [:generate_places, :generate_mts, :generate_materials, :generate_techniques]
+  task :generate_all => [:generate_places, :generate_mts, :generate_materials, :generate_techniques, :generate_artists]
 
   desc 'generate places'
   task :generate_places => [:generate_places_csv, :ingest_places_csv]
@@ -215,7 +216,6 @@ namespace :va do
       (material_id, thing_id);")
   end
 
-  # TODO: model techniques
   desc 'generate techniques'
   task :generate_techniques => [:generate_techniques_csv, :ingest_techniques_csv]
 
@@ -283,6 +283,75 @@ namespace :va do
       OPTIONALLY ENCLOSED BY '\"'
       (technique_id, thing_id);")
   end
+
+  desc 'generate artists'
+  task :generate_artists => [:generate_artists_csv, :ingest_artists_csv]
+
+  task :generate_artists_csv => :environment do
+    # make these conditional
+    system 'rm artists.csv' if File.exists? 'artists.csv'
+    system 'rm artist_things.csv' if File.exists? 'artist_things.csv'
+    artists = []
+    artist_things = []
+    bar = ProgressBar.create(:title => "Artists", 
+                             :starting_at => 0, 
+                             :total => Thing.all.count,
+                             :format => '%a |%b>>%i| %p%% %t')
+    Thing.find_each do |thing|
+      next if thing['artist'].blank?
+      if !artists.include?(thing['artist'])
+        artists << thing['artist']
+      end
+
+      artist_things[thing.id] = artists.index(thing['artist'])
+
+      bar.increment
+    end
+    bar.finish
+
+    puts "artists is #{artists.length} long"
+    puts "artist_things is #{artist_things.length} long"
+
+    puts "Making artists.csv"
+    CSV.open("artists.csv", "wb") do |csv|
+      artists.each_with_index do |art, index|
+        csv << [index+1,art]
+      end
+    end
+
+    # make artist_things.csv
+    puts "Making artist_things.csv"
+    CSV.open("artist_things.csv", "wb") do |csv|
+      artist_things.each_with_index do |art, index|
+        if art
+          csv << [art+1, index]
+        end
+      end
+    end
+  end
+
+  task :ingest_artists_csv => :environment do
+    puts "Deleting old artists"
+    Artist.delete_all
+    puts "Ingesting artists from CSV"
+    ActiveRecord::Base.connection.execute("
+      LOAD DATA LOCAL INFILE '#{Dir.pwd}/artists.csv'
+      INTO TABLE artists
+      FIELDS TERMINATED BY ','
+      OPTIONALLY ENCLOSED BY '\"'
+      (id, name);")
+
+    puts "Deleting old artist_things"
+    ArtistThing.delete_all
+    puts "Ingesting artist_things from CSV"
+    ActiveRecord::Base.connection.execute("
+      LOAD DATA LOCAL INFILE '#{Dir.pwd}/artist_things.csv'
+      INTO TABLE artist_things
+      FIELDS TERMINATED BY ','
+      OPTIONALLY ENCLOSED BY '\"'
+      (artist_id, thing_id);")
+  end
+
 
   desc 'spit out a data file for gnuplot'
   task :test_plot => :environment do
