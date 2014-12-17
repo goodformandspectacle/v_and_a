@@ -7,8 +7,8 @@ Spelunker::Application.routes.draw do
   get 'facets/techniques/:id', to: 'techniques#show'
   get 'facets/materials_techniques', to: 'materials_techniques#index'
   get 'facets/materials_techniques/:id', to: 'materials_techniques#show'
-  get 'facets/artists', to: 'artists#index'
-  get 'facets/artists/:id', to: 'artists#show'
+  get 'facets/artist', to: 'artists#index'
+  get 'facets/artist/:id', to: 'artists#show'
 
   resources :facets do
     collection do
