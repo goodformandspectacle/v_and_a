@@ -8,6 +8,7 @@ class ArtistsController < ApplicationController
 
   def show
     @artist = Artist.find_by(name: params[:id])
+    @count = ArtistThing.joins(:thing).where(artist_id: @artist.id).count
     @artist_things = ArtistThing.joins(:thing).where(artist_id: @artist.id).paginate(page: params[:page])
   end
 end

@@ -8,6 +8,7 @@ class TechniquesController < ApplicationController
 
   def show
     @technique = Technique.find_by(name: params[:id])
+    @count = TechniqueThing.joins(:thing).where(technique_id: @technique.id).count
     @technique_things = TechniqueThing.joins(:thing).where(technique_id: @technique.id).paginate(page: params[:page])
   end
 end

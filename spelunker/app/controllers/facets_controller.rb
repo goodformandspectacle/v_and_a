@@ -11,6 +11,7 @@ class FacetsController < ApplicationController
     @facet = params[:id]
 
     values = Thing.group(@facet).count.to_a.sort_by{|v| v.last}.reverse
+    @count = values.size
     if params[:page]
       current_page = params[:page].to_i
     else
@@ -26,6 +27,7 @@ class FacetsController < ApplicationController
   end
 
   def things
+    @count = Thing.where(params[:facet_id] => URI.decode(params[:id])).count
     @things = Thing.where(params[:facet_id] => URI.decode(params[:id])).paginate(page: params[:page])
   end
 

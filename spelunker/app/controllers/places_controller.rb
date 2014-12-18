@@ -8,6 +8,7 @@ class PlacesController < ApplicationController
 
   def show
     @place = Place.find_by(name: params[:id])
+    @count = PlaceThing.joins(:thing).where(place_id: @place.id).count
     @placethings = PlaceThing.joins(:thing).where(place_id: @place.id).paginate(page: params[:page])
   end
 end

@@ -8,6 +8,7 @@ class MaterialsController < ApplicationController
 
   def show
     @material = Material.find_by(name: params[:id])
+    @count = MaterialThing.joins(:thing).where(material_id: @material.id).count
     @material_things = MaterialThing.joins(:thing).where(material_id: @material.id).paginate(page: params[:page])
   end
 end

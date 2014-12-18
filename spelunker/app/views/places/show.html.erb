@@ -1,4 +1,4 @@
-<h1><%= link_to 'Facets', facets_path %> / <%= link_to 'Places', facet_path('place') %> / <%= @place.name %></h1>
+<h1><%= link_to 'Facets', facets_path %> / <%= link_to 'Places', facet_path('place') %> / <%= @place.name %> x <%= number_with_delimiter @count %></h1>
 
 <%= render partial: 'things/table', locals: {things: @placethings.map(&:thing)} %>
 
