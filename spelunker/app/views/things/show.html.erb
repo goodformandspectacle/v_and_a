@@ -1,4 +1,11 @@
 <div class='page_title'>
+	<div style="float:right;">
+		<span class='st_pinterest_large'></span>
+		<span class='st_facebook_large'></span>
+		<span class='st_twitter_large'></span>
+		<span class='st_tumblr_large'></span>
+		<span class='st_wordpress_large'></span>	
+	</div>
   <% if !@thing.title.blank? %>
     <h1><%= @thing.title %></h1>
   <% else %>
@@ -11,13 +18,6 @@
     <%= link_to image_tag(@thing.image_url(:large)), @thing.image_url %>
   </div>
 <% end %>
-
-<p>
-  Share? 
-	<span class='st_pinterest' displayText=''></span>
-	<span class='st_facebook' displayText=''></span>
-	<span class='st_twitter' displayText=''></span>  
-</p>
 
 <p><%= link_to "View the V&A API .json response", @thing.api_path %></p>
 
