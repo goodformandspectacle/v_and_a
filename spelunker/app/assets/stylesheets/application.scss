@@ -27,7 +27,29 @@ body.dark {
 }
 
 #explanation {
+  font-size: 16px;
   color: #aaa;
+  span.made {
+    font-weight: bold;
+    color: yellow;
+  }
+  span.acquired {
+    font-weight: bold;
+    color: cyan;
+  }
+}
+
+body.dark {
+  #explanation {
+    a:link, a:visited {
+      color: #cc5544;
+      text-decoration: none;
+    }
+    a:hover, a:active {
+      color: red;
+      text-decoration: underline;
+    }
+  }
 }
 
 #object-dates {

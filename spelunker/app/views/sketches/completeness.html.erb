@@ -7,6 +7,9 @@ Date Graph :
 <h1>Date Graph</h1>
 
 <div id="explanation">
+  <p>
+  This visualization maps <span class='made'>when objects were made</span>, and <span class='acquired'>when they were acquired</span>. You can adjust your view by changing the yellow dates.<br/>The brightness of the yellow bars indicates a simple "completeness" of the object's catalogue record: how many fields in the record contain a value.<br/>Try an example? <%= link_to "100-150", completeness_path(start:100, end:150) %>, <%= link_to "1850-1900", completeness_path(start:1850, end:1900) %>, <%= link_to "2000-2014", completeness_path(start:2000, end:2014) %>.
+  </p>
   <p>You're looking at <b><%= number_with_delimiter(@rows.count, delimiter:',') %></b> objects made between <b><%= @min_year_start %></b> and <b><%= @max_year_end %></b>.</p>
 </div>
 
