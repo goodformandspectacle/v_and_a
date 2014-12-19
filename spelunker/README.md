@@ -29,3 +29,14 @@ First, make sure you've migrated the DB. Then, from the app's directory, you can
 In `lib/tasks/va.rake` you'll find the full Rakefile, and you can choose to run individual tasks if you'd like to pace them - either generate/ingest a single type of thing (`rake va:generate_materials`) or go as granular as separating generation and ingest (`rake va:generate_materials_csv` and `rake va:ingest_materials_csv`, for instance).
 
 For deployment, I generated the CSV, `scp`ed it over to the server, and then ingested it there.
+
+## Deployment
+
+We're deploying to Amazon Elastic Beanstalk; George supplied me with creds for the GFS account.
+
+Deployment is relatively straightforward: you need to push a zip of executable code to Amazon Elastic Beanstalk. I've simplified that process a little with a script:
+
+1. Push all your changes to the remote repository
+2. From the root directory of the repository, ie, the parent of this directory, run `./package.rb`
+3. This will create a zipfile with a name like `rev-855896a.zip`, describing which version of the code has been zipped (and containing the output of `git-archive` for the `spelunker` directory: you have to supply the code with no parent directories at all, and only that which you wish to run - which makes deploying from a subdirectory require this step)
+4. From the AWS Elastic Beanstalk control panel, deploy a new version, uploading this zipfile when prompted.
