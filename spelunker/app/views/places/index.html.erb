@@ -15,7 +15,7 @@ Places <% if params[:page] %>(p<%= params[:page] %>)<% end %> : Facets :
     <% for placething in @placethings %>
       <tr>
         <td><%= link_to placething.name, place_path(id: placething.name) %></td>
-        <td><%= placething.count %></td>
+        <td><%= number_with_delimiter placething.count %></td>
       </tr>
     <% end %>
   </tbody>

@@ -15,7 +15,7 @@ Materials <% if params[:page] %>(p<%= params[:page] %>)<% end %> : Facets :
     <% for mat in @material_things %>
       <tr>
         <td><%= link_to mat.name, material_path(id: mat.name) %></td>
-        <td><%= mat.count %></td>
+        <td><%= number_with_delimiter mat.count %></td>
       </tr>
     <% end %>
   </tbody>

@@ -15,7 +15,7 @@ Materials &amp; Techniques <% if params[:page] %>(p<%= params[:page] %>)<% end %
     <% for mt in @material_technique_things %>
       <tr>
         <td><%= link_to mt.name, materials_technique_path(id: mt.name) %></td>
-        <td><%= mt.count %></td>
+        <td><%= number_with_delimiter mt.count %></td>
       </tr>
     <% end %>
   </tbody>

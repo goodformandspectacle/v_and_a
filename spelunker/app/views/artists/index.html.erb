@@ -15,7 +15,7 @@ Artist <% if params[:page] %>(p<%= params[:page] %>)<% end %> : Facets :
     <% for artist in @artist_things %>
       <tr>
         <td><%= link_to artist.name, artist_path(id: artist.name) %></td>
-        <td><%= artist.count %></td>
+        <td><%= number_with_delimiter artist.count %></td>
       </tr>
     <% end %>
   </tbody>

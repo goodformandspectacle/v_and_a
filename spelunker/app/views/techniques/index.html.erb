@@ -15,7 +15,7 @@ Techniques <% if params[:page] %>(p<%= params[:page] %>)<% end %> : Facets :
     <% for technique in @technique_things %>
       <tr>
         <td><%= link_to technique.name, technique_path(id: technique.name) %></td>
-        <td><%= technique.count %></td>
+        <td><%= number_with_delimiter technique.count %></td>
       </tr>
     <% end %>
   </tbody>
