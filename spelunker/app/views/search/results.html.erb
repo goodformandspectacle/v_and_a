@@ -1,3 +1,7 @@
+<% content_for :pagetitle do %>
+Search results for '<%= @query %>' : 
+<% end %>
+
 <h1>'<%= @query %>'</h1>
 
 <% if @things.any? %>

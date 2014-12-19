@@ -1,3 +1,7 @@
+<% content_for :pagetitle do %>
+<%= @place.name %> <% if params[:page] %>(p<%= params[:page] %>)<% end %> : Places : Facets : 
+<% end %>
+
 <h1><%= link_to 'Facets', facets_path %> / <%= link_to 'Places', facet_path('place') %> / <%= @place.name %> x <%= number_with_delimiter @count %></h1>
 
 <%= render partial: 'things/table', locals: {things: @placethings.map(&:thing)} %>

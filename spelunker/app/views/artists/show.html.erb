@@ -1,3 +1,7 @@
+<% content_for :pagetitle do %>
+<%= @artist.name %> <% if params[:page] %>(p<%= params[:page] %>)<% end %> : Artist : Facets : 
+<% end %>
+
 <h1><%= link_to 'Facets', facets_path %> / <%= link_to "Artist", facet_path('artist') %> / <%= @artist.name %> x <%= number_with_delimiter @count %></h1>
 
 <%= render partial: 'things/table', locals: {things: @artist_things.map(&:thing)} %>

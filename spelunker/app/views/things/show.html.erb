@@ -1,3 +1,12 @@
+<% content_for :pagetitle do %>
+<% if !@thing.title.blank? %>
+    <%= @thing.title %>
+  <% else %>
+    No Title
+  <% end %>
+: Things : 
+<% end %>
+
 <div class='page_title'>
 	<div style="float:right;">
 		<span class='st_pinterest_large'></span>

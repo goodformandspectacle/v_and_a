@@ -1,3 +1,7 @@
+<% content_for :pagetitle do %>
+<%= params[:id] %> <% if params[:page] %>(p<%= params[:page] %>)<% end %> : <%= params[:facet_id] %> : Facets : 
+<% end %>
+
 <h1><%= link_to 'Facets', facets_path %> / <%= link_to params[:facet_id], facet_path(params[:facet_id]) %> / <%= params[:id] %> x <%= number_with_delimiter @count %></h1>
 
 <%= render partial: 'things/table', locals: {things: @things} %>
