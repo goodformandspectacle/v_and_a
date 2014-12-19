@@ -1,16 +1,16 @@
 Spelunker::Application.routes.draw do
-  get 'facets/place', to: 'places#index'
   get 'facets/place/:id', to: 'places#show', :id => /.+/
-  get 'facets/materials', to: 'materials#index'
+  get 'facets/place', to: 'places#index'
   get 'facets/materials/:id', to: 'materials#show', :id => /.+/
-  get 'facets/techniques', to: 'techniques#index'
+  get 'facets/materials', to: 'materials#index'
   get 'facets/techniques/:id', to: 'techniques#show', :id => /.+/
+  get 'facets/techniques', to: 'techniques#index'
   get 'facets/materials_techniques/:id', to: 'materials_techniques#show', :id => /.+/
   get 'facets/materials_techniques', to: 'materials_techniques#index'
-  get 'facets/artist', to: 'artists#index'
   get 'facets/artist/:id', to: 'artists#show', :id => /.+/ 
+  get 'facets/artist', to: 'artists#index'
 
-  get 'facets/:facet_id/:id', to: 'facets#things', :id => /.+/, as: :facet_thing
+  get 'facets/:facet_id/:id', to: 'facets#things', as: :facet_thing
   resources :facets do
     collection do
       get 'random_object'
@@ -25,12 +25,6 @@ Spelunker::Application.routes.draw do
   resource :search, :controller => "search" do
     member do
       get 'results'
-    end
-  end
-
-  resources :sketches do
-    collection do
-      get 'completeness'
     end
   end
 

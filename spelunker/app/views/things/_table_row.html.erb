@@ -8,7 +8,7 @@
   <% for field in Thing.attribute_names %>
     <td>
       <% if Facet.all.include?(field) && !thing[field].blank? %>
-        <%= link_to thing[field], facet_thing_path(field, thing[field]) %>
+        <%= link_to thing[field], facet_thing_path(facet_id:field, id: thing[field]) %>
       <% else %>
         <% if Thing.truncatable_fields.include? field %>
         <%= thing[field].truncate(100, separator: ' ') %>
