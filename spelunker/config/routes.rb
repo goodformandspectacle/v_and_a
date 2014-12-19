@@ -1,21 +1,21 @@
 Spelunker::Application.routes.draw do
   get 'facets/place', to: 'places#index'
-  get 'facets/place/:id', to: 'places#show'
+  get 'facets/place/:id', to: 'places#show', :id => /.+/
   get 'facets/materials', to: 'materials#index'
-  get 'facets/materials/:id', to: 'materials#show'
+  get 'facets/materials/:id', to: 'materials#show', :id => /.+/
   get 'facets/techniques', to: 'techniques#index'
-  get 'facets/techniques/:id', to: 'techniques#show'
+  get 'facets/techniques/:id', to: 'techniques#show', :id => /.+/
+  get 'facets/materials_techniques/:id', to: 'materials_techniques#show', :id => /.+/
   get 'facets/materials_techniques', to: 'materials_techniques#index'
-  get 'facets/materials_techniques/:id', to: 'materials_techniques#show'
   get 'facets/artist', to: 'artists#index'
-  get 'facets/artist/:id', to: 'artists#show'
+  get 'facets/artist/:id', to: 'artists#show', :id => /.+/ 
 
+  get 'facets/:facet_id/:id', to: 'facets#things', :id => /.+/, as: :facet_thing
   resources :facets do
     collection do
       get 'random_object'
     end
   end
-  get 'facets/:facet_id/:id', to: 'facets#things', as: :facet_thing
 
   resources :things do
     collection do
