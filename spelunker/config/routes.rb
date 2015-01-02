@@ -47,7 +47,8 @@ Spelunker::Application.routes.draw do
   end
 
   # custom errors
-  get "/404", :to => "errors#not_found"
+  match '/404', to: 'errors#not_found', via: :all
+  
   
 
   root to: 'facets#random_object'
