@@ -168,3 +168,23 @@ img.popover {
 .stickable {
   padding:5px;
 }
+
+#error {
+  h1 {
+    color: red;
+    margin-bottom: 20px;
+  }
+  h2 {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0;
+    line-height: 1.4;
+  }
+  blockquote {
+    font-size: 24px;
+    border-left: none;
+    margin: 0 0 20px;
+    padding: 0;
+    line-height: 1.4;
+  }
+}

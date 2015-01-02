@@ -1,0 +1,11 @@
+<% content_for :pagetitle do %>
+Not found (404) : 
+<% end %>
+
+<div id="error">
+  <h1><em>Blast.</em> We can't find what you're looking for.</h1>
+  <h2>Did you know?</h2>
+  <blockquote><%= @object_text %></blockquote>
+
+  <p><%= link_to thing_url(@object_id), thing_url(@object_id) %></p>
+</div>

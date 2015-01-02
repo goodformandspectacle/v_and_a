@@ -40,5 +40,15 @@ Spelunker::Application.routes.draw do
   resources :techniques
   resources :artists
 
+  resources :errors do
+    collection do
+      get :not_found
+    end
+  end
+
+  # custom errors
+  get "/404", :to => "errors#not_found"
+  
+
   root to: 'facets#random_object'
 end

@@ -19,5 +19,10 @@ module Spelunker
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+    config.exceptions_app = self.routes # by doing this, we can use the routes file
+                                        # to handle custom exceptions and make
+                                        # pretty 404s
+    
   end
 end
