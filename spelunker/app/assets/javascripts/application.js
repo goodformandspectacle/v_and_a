@@ -59,4 +59,18 @@ $(document).ready(function() {
     $(".accession").removeClass('highlight');
     $(".block").removeClass('forcehover');
   });
+
+  // set the dategraph to the appropriate height
+  resizeSketchContainer();
+
+  // ...and continue to do so on resize
+  $(window).resize(function() {
+    resizeSketchContainer();
+  });
 });
+
+function resizeSketchContainer() {
+  var objectCount = $("#objects .block").length;
+  var newHeight = objectCount * 3;
+  $("#sketch-container").css('height', newHeight + 'px');
+}

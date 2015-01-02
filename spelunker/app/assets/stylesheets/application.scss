@@ -83,11 +83,11 @@ body.dark {
   color:cyan;
 }
 
-#objects {
+#sketch-container {
   height: 30000px;
   position: relative;
 }
-#sketch-container {
+#objects {
   width: 80%;
   background: black;
   position: relative;
@@ -135,7 +135,6 @@ body.dark {
   background: black;
   float: left;
   width: 20%;
-  height: 30000px;
   margin-left: 80%;
   position: relative;
   a.accession {
