@@ -55,41 +55,91 @@ body.dark {
   }
 }
 
-#object-dates {
-  font-weight: bold;
-  border-right: 1px solid #ccc;
-  width: 80%;
-  float: left;
-  background: #000;
-  .start {
-    float: left;
-  }
-  .end {
-    float:right;
-    padding-right: 5px;
-  }
-  color:yellow;
-}
-
-#accession-dates {
-  font-weight: bold;
-  background: #000;
-  width: 20%;
-  float: left;
-  .start {
-    float: left;
-    padding-left: 5px;
-  }
-  .end {
-    float:right;
-  }
-  color:cyan;
-}
-
 #sketch-container {
   height: 30000px;
   position: relative;
 }
+
+#sketch-header {
+  position: relative;
+  font-size: 18px;
+  border-top: 1px solid #888;
+  border-bottom: 1px solid #888;
+  margin-top: 40px;
+  margin-bottom: 5px;
+  #dategraph-form {
+    input {
+      font-size: 18px;
+      background: black;
+      color: yellow;
+      border: 1px dotted yellow;
+      text-align: center;
+      width: 70px;
+      z-index: 10;
+      &:focus {
+        border: 1px solid yellow;
+      }
+    }
+  }
+  #object-dates {
+    font-weight: bold;
+    width: 80%;
+    float: left;
+    background: #000;
+    position: relative;
+    .start {
+      float: left;
+    }
+    .end {
+      float:right;
+      padding-right: 5px;
+    }
+    .details {
+      width: 100%;
+      position: absolute;
+      text-align: center;
+      color: #888;
+      font-weight: normal;
+      top: 5px;
+      z-index: 1;
+      pointer-events: none;
+    }
+    color:yellow;
+  }
+
+  #accession-dates {
+    font-weight: bold;
+    background: #000;
+    width: 20%;
+    float: left;
+    position: relative;
+    padding-top: 5px;
+    .start {
+      float: left;
+      padding-left: 5px;
+    }
+    h3 {
+      color: #888;
+      text-transform: uppercase;
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      top: -45px;
+      font-size: 15px;
+    }
+    .end {
+      float:right;
+    }
+    .join {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+    }
+    color:cyan;
+  }
+}
+
+
 #objects {
   width: 80%;
   background: black;

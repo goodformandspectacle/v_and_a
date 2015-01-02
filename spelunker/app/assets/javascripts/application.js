@@ -15,6 +15,8 @@
 //= require_tree .
 
 $(document).ready(function() {
+  PointerEventsPolyfill.initialize({});
+  
   $("#sketch-container a.block").hover(function(e) {
     // get the image data
     if(this.dataset.smallUrl) {
@@ -66,6 +68,13 @@ $(document).ready(function() {
   // ...and continue to do so on resize
   $(window).resize(function() {
     resizeSketchContainer();
+  });
+
+  // accept submit with enterkey from dategraph
+  $('form#dategraph-form input').keydown(function (e) {
+    if (e.keyCode == 13) {
+      $('form#dategraph-form').submit();
+    }
   });
 });
 

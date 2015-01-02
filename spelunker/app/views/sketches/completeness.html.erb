@@ -10,34 +10,26 @@ Date Graph :
   <p>
   This visualization maps <span class='made'>when objects were made</span>, and <span class='acquired'>when they were acquired</span>. You can adjust your view by changing the yellow dates.<br/>The brightness of the yellow bars indicates a simple "completeness" of the object's catalogue record: how many fields in the record contain a value.<br/>Try an example? <%= link_to "100-150", completeness_path(start:100, end:150) %>, <%= link_to "1850-1900", completeness_path(start:1850, end:1900) %>, <%= link_to "2000-2014", completeness_path(start:2000, end:2014) %>.
   </p>
-  <p>You're looking at <b><%= number_with_delimiter(@rows.count, delimiter:',') %></b> objects made between <b><%= @min_year_start %></b> and <b><%= @max_year_end %></b>.</p>
 </div>
 
-<form class="form-inline" role="form" method='get' action='<%= completeness_path %>'>
-  <div class="form-group">
-    <div class="input-group">
-      <label class="sr-only" for="startyearfield">Start year</label>
-      <input value="<%= params[:start] %>" type="text" class="form-control" id="startyearfield" name='start' placeholder="Start year">
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="input-group">
-      <label class="sr-only" for="endyearfield">End year</label>
-      <input value="<%= params[:end] %>" type="text" class="form-control" id="endyearfield" name='end' placeholder="End year">
-    </div>
-  </div>
-  <button type="submit" class="btn btn-default">Refresh</button>
-</form>
-
 <div id="sticky-anchor"></div>
-<div id="header" class='stickable'>
+<div id="sketch-header" class='stickable'>
 	<div id="object-dates">
-	  <div class='start'><%= @min_year_start %></div>
-    <div class='end'><%= @max_year_end %></div>
+    <form id='dategraph-form' role='form' method='get' action='<%= completeness_path%>'>
+      <div class='start'>
+        <input value="<%= @min_year_start %>" type="text" class="form-control" id="startyearfield" name='start'> 
+      </div>
+      <div class='details'><%= number_with_delimiter(@rows.count) %> objects in this date range</div>
+      <div class='end'>
+        <input value="<%= @max_year_end %>" type="text" class="form-control" id="endyearfield" name='end' placeholder="End year">
+      </div>
+    </form>
   </div>
 
 	<div id="accession-dates">
+    <h3>Acquired in</h3>
 	  <div class='start'>1852</div>
+    <div class='join'>...</div>
     <div class='end'><%= Time.now.year %></div>
 	</div>
   <div class='clearfix'></div>
