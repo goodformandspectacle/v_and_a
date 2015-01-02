@@ -1,6 +1,12 @@
-<% things.each do |thing| %>
-    <% if thing.has_image? %>
-      <%= link_to image_tag(thing.image_url(:square)), thing_path(thing) %>
+<div id="thing-grid">
+<% things.in_groups_of(3) do |row| %>
+  <div class='row'>
+    <% row.each do |thing| %>
+      <% if thing %>
+        <div class='col-sm-4 block'><%= link_to image_tag(thing.image_url(:square)), thing_path(thing) %></div>
+      <% end %>
     <% end %>
+  </div>
 <% end %>
 <div class='clear'></div>
+</div>
