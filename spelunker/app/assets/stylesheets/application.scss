@@ -62,9 +62,8 @@ body.dark {
 
 #sketch-header {
   font-size: 18px;
-  border-top: 1px solid #888;
   border-bottom: 1px solid #888;
-  margin-top: 40px;
+  padding-top: 40px;
   margin-bottom: 5px;
   background: black;
   z-index: 999;
@@ -83,11 +82,13 @@ body.dark {
     }
   }
   #object-dates {
+    border-top: 1px solid #888;
     font-weight: bold;
     width: 80%;
     float: left;
     background: #000;
     position: relative;
+    padding-top: 5px;
     .start {
       float: left;
     }
@@ -101,7 +102,7 @@ body.dark {
       text-align: center;
       color: #888;
       font-weight: normal;
-      top: 5px;
+      top: 10px;
       z-index: 1;
       pointer-events: none;
     }
@@ -109,12 +110,13 @@ body.dark {
   }
 
   #accession-dates {
+    border-top: 1px solid #888;
     font-weight: bold;
     background: #000;
     width: 20%;
     float: left;
     position: relative;
-    padding-top: 5px;
+    padding-top: 10px;
     .start {
       float: left;
       padding-left: 5px;
