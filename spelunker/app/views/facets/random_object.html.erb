@@ -1,4 +1,4 @@
-<h1>Ooh look, <%= @things.size.humanize %> random <%= link_to @object_type.downcase.pluralize(@things.size), facet_thing_path(id: @object_type, facet_id: 'object') %>. <%= link_to "AGAIN!", root_path %></h1>
+<h1>Ooh look, <%= @things.size.humanize %> random <%= link_to @object_type.downcase.pluralize(@things.size), facet_thing_path(id: @object_type, facet_id: 'object') %>...</h1>
 
 <%= render partial: 'things/imageList', locals: {things: @things} %>
 
