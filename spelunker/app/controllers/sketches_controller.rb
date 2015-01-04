@@ -23,8 +23,8 @@ class SketchesController < ApplicationController
     rows = []
 
     things.each do |thing|
-      scaled_start = thing.year_start.to_i.scale_between(@min_year_start,@max_year_end,0,100)
-      scaled_end = (thing.year_end.to_i + 1).scale_between(@min_year_start,@max_year_end,0,100)
+      scaled_start = thing.year_start.to_i.scale_between(@min_year_start,@max_year_end+1,0,100)
+      scaled_end = (thing.year_end.to_i + 1).scale_between(@min_year_start,@max_year_end+1,0,100)
       scaled_width = scaled_end - scaled_start
 
       if thing.accession_year
