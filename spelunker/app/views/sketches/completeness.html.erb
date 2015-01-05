@@ -8,7 +8,7 @@ Date Graph :
 
 <div id="explanation">
   <p>
-  This visualization maps <span class='made'>when objects were made</span>, and <span class='acquired'>when they were acquired</span> by the museum. You can adjust your view by changing the yellow dates. The brightness of the yellow date bars indicates a  "completeness" of the object's catalogue record. The brighter the yellow, the more fields in the record contain a value. So, we don't know much about objects represented by the darker yellow bars.<br />Try an example? <%= link_to "100-150", completeness_path(start:100, end:150) %>, <%= link_to "1850-1900", completeness_path(start:1850, end:1900) %>, <%= link_to "2000-2014", completeness_path(start:2000, end:2014) %>.
+  This visualization maps <span class='made'>when objects were made</span>, and <span class='acquired'>when they were acquired</span> by the museum. You can adjust your view by changing the yellow dates. The brightness of the yellow date bars indicates a  "completeness" of the object's catalogue record. The brighter the yellow, the more fields in the record contain a value. So, we don't know much about objects represented by the darker yellow bars.<br />Try an example? <%= link_to "0-150", completeness_path(start:0, end:150) %>, <%= link_to "1850-1900", completeness_path(start:1850, end:1900) %>, <%= link_to "2000-2014", completeness_path(start:2000, end:2014) %>.
   </p>
 </div>
 
