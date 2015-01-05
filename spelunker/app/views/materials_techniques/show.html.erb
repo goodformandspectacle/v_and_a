@@ -4,6 +4,12 @@
 
 <h1><%= link_to 'Facets', facets_path %> / <%= link_to "Materials & Techniques", facet_path('materials_techniques') %> / <%= @material_technique.name %> x <%= number_with_delimiter @count %></h1>
 
+<%= render partial: 'things/toggle_image_list' %>
+
+<% if params[:images] %>
+<%= render partial: 'things/imageList', locals: {things: @material_technique_things.map(&:thing)} %>
+<% else %>
 <%= render partial: 'things/table', locals: {things: @material_technique_things.map(&:thing)} %>
+<% end %>
 
 <%= will_paginate @material_technique_things %>

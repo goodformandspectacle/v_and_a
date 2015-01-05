@@ -4,6 +4,12 @@
 
 <h1><%= link_to 'Facets', facets_path %> / <%= link_to "Artist", facet_path('artist') %> / <%= @artist.name %> x <%= number_with_delimiter @count %></h1>
 
+<%= render partial: 'things/toggle_image_list' %>
+
+<% if params[:images] %>
+<%= render partial: 'things/imageList', locals: {things: @artist_things.map(&:thing)} %>
+<% else %>
 <%= render partial: 'things/table', locals: {things: @artist_things.map(&:thing)} %>
+<% end %>
 
 <%= will_paginate @artist_things %>
