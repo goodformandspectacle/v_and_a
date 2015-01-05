@@ -1,0 +1,8 @@
+<p>
+<% if params[:images] %>
+  <%= link_to 'show as list', request.parameters.except('images') %> | <b>showing as images</b>
+<% else %>
+  <b>showing as list</b> | <%= link_to 'show as images', request.parameters.merge({images:true}) %>
+<% end %>
+</p>
+

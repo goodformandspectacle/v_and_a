@@ -3,7 +3,11 @@
   <div class='row'>
     <% row.each do |thing| %>
       <% if thing %>
-        <div class='col-sm-4 block'><%= link_to image_tag(thing.image_url(:square)), thing_path(thing) %></div>
+        <% if thing.has_image? %>
+          <div class='col-sm-4 block'><%= link_to image_tag(thing.image_url(:square)), thing_path(thing) %></div>
+        <% else %>
+          <div class='col-sm-4 block'><%= link_to image_tag(asset_path('missing-image.png')), thing_path(thing), {style: 'display: block; padding-top: 50px; text-align: center;'} %></div>
+        <% end %>
       <% end %>
     <% end %>
   </div>
