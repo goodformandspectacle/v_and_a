@@ -42,7 +42,11 @@
         <% if Facet.all.include?(field) && !@thing[field].blank? %>
           <%= link_to @thing[field], facet_thing_path(field, @thing[field]) %>
         <% else %>
+          <% if @thing[field].is_a?(String) %>
+          <%= @thing[field].html_safe %>
+          <% else %>
           <%= @thing[field] %>
+          <% end %>
         <% end %>
       </dd>
     <% end %>
