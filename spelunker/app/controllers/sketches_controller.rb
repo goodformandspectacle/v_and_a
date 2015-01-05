@@ -8,14 +8,14 @@ class SketchesController < ApplicationController
   caches_action :completeness, :cache_path => Proc.new {|c| c.request.url }
 
   def completeness
-    hard_cap = 5000
+    @hard_cap = 5000
     if params[:start] && params[:end]
       @min_year_start = params[:start].to_i
       @max_year_end = params[:end].to_i
 
-      things = Thing.where("year_start >= ?", @min_year_start).where("year_end <= ?", @max_year_end).limit(hard_cap)
+      things = Thing.where("year_start >= ?", @min_year_start).where("year_end <= ?", @max_year_end).limit(@hard_cap)
     else
-      things = Thing.where("year_start != ''").where("year_end !=''").limit(hard_cap)
+      things = Thing.where("year_start != ''").where("year_end !=''").limit(@hard_cap)
       @min_year_start = things.min_by {|t| t.year_start.to_i}.year_start.to_i
       @max_year_end = things.max_by {|t| t.year_end.to_i}.year_end.to_i
     end

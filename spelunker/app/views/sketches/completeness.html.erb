@@ -18,7 +18,12 @@ Date Graph :
       <div class='start'>
         <input value="<%= @min_year_start %>" type="text" class="form-control" id="startyearfield" name='start'> 
       </div>
-      <div class='details'><%= number_with_delimiter(@rows.count) %> objects in this date range</div>
+      <div class='details'>
+        Showing <%= number_with_delimiter(@rows.count) %> objects 
+        <% if @rows.count == @hard_cap %>
+        (the maximum)
+        <% end %>
+      </div>
       <div class='end'>
         <input value="<%= @max_year_end %>" type="text" class="form-control" id="endyearfield" name='end' placeholder="End year">
       </div>
