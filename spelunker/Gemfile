@@ -34,6 +34,10 @@ gem 'oily_png'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+# elasticsearch
+gem 'active_model_serializers', '~> 0.9.0'
+gem 'elasticsearch'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
