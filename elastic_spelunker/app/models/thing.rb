@@ -13,6 +13,10 @@ class Thing
     @original_hash = hash
   end
 
+  def to_param
+    object_number
+  end
+
   def method_missing(m, *args, &block)
     if @original_hash
       @original_hash.send(m, *args, &block)
@@ -90,7 +94,7 @@ class Thing
       (total_hits.to_f/per_page).ceil
     end
 
-    def find
+    def find(object_number)
       # TODO
     end
 
@@ -118,8 +122,78 @@ class Thing
       end
     end
 
+    def with_facet(facet,value,page=1,per_page=10)
+      query = Jbuilder.encode do |json|
+        json.query do
+          json.match do
+            json.set! facet.to_sym, value
+          end
+        end
+        json.size per_page
+        json.from per_page * (page-1)
+        json.sort do
+          json.object_number "desc"
+        end
+      end
+
+      begin
+        search_results_hash = query(INDEX_NAME,query)
+
+        rows = search_results_hash.hits.hits.map {|h| h._source}
+
+        things = rows.map {|row| Thing.new(row) }
+
+        total_pages = total_pages_for_results(search_results_hash, per_page)
+
+        [things, total_pages]
+      rescue Elasticsearch::Transport::Transport::Errors::NotFound
+        [nil,0]
+      end
+    end
+
+    def counts_for_facet(facet)
+      query = Jbuilder.encode do |json|
+        json.aggs do
+          json.facet do
+            json.terms do
+              json.field facet
+              json.size 1000
+            end
+          end
+        end
+      end
+
+      begin
+        search_results_hash = query(INDEX_NAME,query)
+
+        search_results_hash.aggregations.facet.buckets
+      rescue Elasticsearch::Transport::Transport::Errors::NotFound
+        nil
+      end
+
+    end
+
     def count_all
       query = Jbuilder.encode do |json|
+        json.size 10
+        json.from 0
+      end
+
+      begin
+        search_results_hash = query(INDEX_NAME,query)
+        search_results_hash['hits']['total']
+      rescue Elasticsearch::Transport::Transport::Errors::NotFound
+        0
+      end
+    end
+
+    def count_with_facet(facet,value)
+      query = Jbuilder.encode do |json|
+        json.query do
+          json.match do
+            json.set! facet.to_sym, value
+          end
+        end
         json.size 10
         json.from 0
       end

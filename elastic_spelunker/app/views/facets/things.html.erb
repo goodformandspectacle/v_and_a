@@ -1,8 +1,8 @@
 <% content_for :pagetitle do %>
-Big Dumb List <% if params[:page] %>(p<%= params[:page] %>)<% end %> : 
+<%= params[:id] %> <% if params[:page] %>(p<%= params[:page] %>)<% end %> : <%= params[:facet_id] %> : Facets : 
 <% end %>
 
-<h1>Things</h1>
+<h1><%= link_to 'Facets', facets_path %> / <%= link_to params[:facet_id], facet_path(params[:facet_id]) %> / <%= params[:id] %> x <%= number_with_delimiter @total_count %></h1>
 
 <%= render partial: 'things/toggle_image_list' %>
 
@@ -13,4 +13,5 @@ Big Dumb List <% if params[:page] %>(p<%= params[:page] %>)<% end %> :
 <% end %>
 
 <%= will_paginate @things_to_paginate %>
+
 

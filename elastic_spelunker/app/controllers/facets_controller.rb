@@ -1,8 +1,4 @@
 class FacetsController < ApplicationController
-  caches_action :index, cache_path: Proc.new {|c| c.request.url }, expires_in: 1.week
-  caches_action :show, cache_path: Proc.new {|c| c.request.url }, expires_in: 1.week
-  caches_action :things, cache_path: Proc.new {|c| c.request.url }, expires_in: 1.week
-
   def index
     @facets = Facet.all
   end
@@ -10,25 +6,42 @@ class FacetsController < ApplicationController
   def show
     @facet = params[:id]
 
-    values = Thing.group(@facet).count.to_a.sort_by{|v| v.last}.reverse
+    values = Thing.counts_for_facet(@facet)
+
     @count = values.size
     if params[:page]
       current_page = params[:page].to_i
     else
       current_page = 1
     end
-    per_page = 30
+    per_page = 20
     @values = WillPaginate::Collection.create(current_page, per_page, values.length) do |pager|
       pager.replace values
     end
+
     start = per_page * (current_page-1)
     @facet_vals = values[start,per_page]
 
   end
 
   def things
-    @count = Thing.where(params[:facet_id] => URI.decode(params[:id])).count
-    @things = Thing.where(params[:facet_id] => URI.decode(params[:id])).paginate(page: params[:page])
+    if params[:page]
+      @current_page = params[:page].to_i
+    else
+      @current_page = 1
+
+    end
+    begin
+      @things, @total_pages = Thing.with_facet(params[:facet_id], params[:id], @current_page, 20)
+      @total_count = Thing.count_with_facet(params[:facet_id], params[:id])
+      @things_to_paginate = WillPaginate::Collection.new(@current_page, 20, @total_count)
+    rescue Faraday::TimeoutError, Faraday::ConnectionFailed
+      @rows, @total_pages = [], 0
+      @elasticsearch_error = "There was an error connecting to Elasticsearch, and results cannot be shown."
+    rescue Elasticsearch::Transport::Transport::Errors::NotFound
+      @rows, @total_pages = [], 0
+      @total_count = 0
+    end
   end
 
   def random_object
