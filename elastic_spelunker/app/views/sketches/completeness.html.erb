@@ -1,0 +1,65 @@
+<% content_for :pagetitle do %>
+Date Graph : 
+<% end %>
+
+<% content_for :bodyclass do %>dark<%end%>
+
+<h1>Date Graph</h1>
+
+<div id="explanation">
+  <p>
+  This visualization maps <span class='made'>when objects were made</span>, and <span class='acquired'>when they were acquired</span> by the museum. You can adjust your view by changing the yellow dates. The brightness of the yellow date bars indicates a  "completeness" of the object's catalogue record. The brighter the yellow, the more fields in the record contain a value. So, we don't know much about objects represented by the darker yellow bars.<br />Try an example? <%= link_to "0-150", completeness_path(start:0, end:150) %>, <%= link_to "1850-1900", completeness_path(start:1850, end:1900) %>, <%= link_to "2000-2014", completeness_path(start:2000, end:2014) %>.
+  </p>
+</div>
+
+<div id="sketch-header" class='stickable'>
+	<div id="object-dates">
+    <form id='dategraph-form' role='form' method='get' action='<%= completeness_path%>'>
+      <div class='start'>
+        <input value="<%= @min_year_start %>" type="text" class="form-control" id="startyearfield" name='start'> 
+      </div>
+      <div class='details'>
+        Showing <%= number_with_delimiter(@rows.count) %> objects 
+        <% if @rows.count == @hard_cap %>
+        (the maximum)
+        <% end %>
+      </div>
+      <div class='end'>
+        <input value="<%= @max_year_end %>" type="text" class="form-control" id="endyearfield" name='end' placeholder="End year">
+      </div>
+    </form>
+  </div>
+
+	<div id="accession-dates">
+    <h3>Acquired in</h3>
+	  <div class='start'>1852</div>
+    <div class='join'>...</div>
+    <div class='end'><%= Time.now.year %></div>
+	</div>
+  <div class='clearfix'></div>
+</div>
+
+<div class='clearfix'></div>
+
+<div id="sketch-container">
+  <div id="objects">
+    <% @rows.each_with_index do |row,i| %>
+      <a class='block <%= row[:yellowness] %>' id='thing-<%= row[:thing].id %>'style="top: <%= i*3 %>px; left: <%= row[:start] %>%; width: <%= row[:width] %>%;" data-title="<%= row[:thing].title %>" data-thing-id="<%= row[:thing].id %>" data-small-url="<%= row[:thing].image_url(:small) || asset_path('missing-image.png') %>" title="<%= row[:thing].title %>" href="<%= thing_path(row[:thing]) %>">&nbsp</a>
+    <% end %>
+    <div class='clearfix'></div>
+  </div>
+
+  <div id="accessions">
+    <% @rows.each_with_index do |row,i| %>
+      <% if row[:thing].accession_year %>
+        <a class='accession' id='accession-<%= row[:thing].id %>' style="top: <%= i*3 %>px; left: <%= row[:accession_left] %>%;" data-title="<%= row[:thing].title %>" data-thing-id="<%= row[:thing].id %>" data-small-url="<%= row[:thing].image_url(:small) %>" title="<%= row[:thing].title %>" href="<%= thing_path(row[:thing]) %>"><span>&#739;</span></a>
+      <% else %>
+        <a class='accession missing' id='accession-<%= row[:thing].id %>' style="top: <%= i*3 %>px; left: 0px;" data-thing-id="<%= row[:thing].id %>" data-title="<%= row[:thing].title %>" data-small-url="<%= row[:thing].image_url(:small) %>" title="<%= row[:thing].title %>" href="<%= thing_path(row[:thing]) %>"><span>o</span></a>
+      <% end %>
+    <% end %>
+    <div class='clearfix'></div>
+  </div>
+</div>
+
+<div class='clearfix'></div>
+

@@ -1,0 +1,27 @@
+<nav class="navbar navbar-default navbar-inverse" role='navigation'>
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type='button' data-toggle='collapse' data-target='#navbar-collapse'>
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand gfs" href="http://gfns.uk">
+        <img src="http://goodformandspectacle.com/gfns-butterfly-60x60.png" title="a toy from Good, Form & Spectacle" />
+      </a>
+      <%= link_to "V&A Spelunker", root_path, class: 'navbar-brand' %>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div id="navbar-collapse" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><%= link_to 'Date Graph', completeness_path %></li>
+        <li><%= link_to 'Browse by Facets', facets_path %></li>
+        <li><%= link_to 'Big Dumb List', list_things_path %></li>
+        <li><%= link_to 'About', about_path %></li>
+      </ul>
+
+    </div>
+  </div>
+</nav>

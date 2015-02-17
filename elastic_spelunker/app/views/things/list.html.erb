@@ -1,0 +1,16 @@
+<% content_for :pagetitle do %>
+Big Dumb List <% if params[:page] %>(p<%= params[:page] %>)<% end %> : 
+<% end %>
+
+<h1>Things</h1>
+
+<%= render partial: 'things/toggle_image_list' %>
+
+<% if params[:images] %>
+<%= render partial: 'things/imageList', locals: {things: @things} %>
+<% else %>
+<%= render partial: 'things/table', locals: {things: @things} %>
+<% end %>
+
+<%= will_paginate @things %>
+

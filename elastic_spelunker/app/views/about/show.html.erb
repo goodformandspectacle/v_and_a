@@ -1,0 +1,20 @@
+<% content_for :pagetitle do %>
+About : 
+<% end %>
+
+<h1>About This Project</h1>
+
+<p class="lead">The V&amp;A Spelunker is a rough thing built by <a href="http://goodformandspectacle.com" title="design in service to cultural heritage">Good, Form &amp; Spectacle</a> to give a different view into the collection of the <a href="http://www.vam.ac.uk">Victoria &amp; Albert Museum</a>.</p>
+
+<p>First things first, a hearty thanks go to <a href="http://tomarmitage.com">Tom Armitage</a> for his superb engineering and data wrangling skills. The spelunker would not exist without you, Tom.</p>
+
+<p>Second, in addition to the randomizer-by-type display we made for the home page, the spelunker has three main views:</p>
+<p>The <strong><%= link_to 'Date Graph', completeness_path %></strong> is a visualization of just three fields in the collection database: <code>year_start</code>, <code>year_end</code> and <code>museum_number</code>. The <strong style="color:yellow; background-color:black;">yellow</strong> bars that show representative <code>year_start</code> and <code>year_end</code> dates for <strong style="color:yellow; background-color:black;">when each object was created</strong>. The yellow bars are given a "completeness" score too, which simple shows a simple scale of how many fields in that record are complete, or not. The brighter the row, the more complete the record. The <strong style="color:cyan;background-color:black;">blue</strong> map on the right shows the <strong style="color:cyan;background-color:black;">acquisition year</strong> for each object. If you see a red notch in that column, that means we weren't able to surface a date from the acquisition column that looked like a year. You can also use the form up the top to constrain the graph to show objects between specific years. <a href="/completeness?start=2000&end=2014">2000-2014</a> is a fun range, for example.</p>
+<p>The <strong><%= link_to 'Browse by Facets', facets_path %></strong> is also just what it says on the tin. The collections database has a few fields that are approachable to normal humans, like <a href="/facets/materials">material</a>, <a href="/facets/location">location in the museum</a>, or <a href="/facets/place">place in the world</a>. We've just made these things filters for the Big Dumb List so you can see stuff like about <a href="/facets/location">400,000 objects are currently in storage</a>, or <a href="/facets/place/California">157 things from California</a>.</p>
+<p>The <strong><%= link_to 'Big Dumb List', list_things_path %></strong> is just that. The very first step in understanding any big database, just showing everything, and making simple ways to navigate around in it so you can quickly get a feel for its scale, and, especially, interconnection.</p>
+
+<p>If you find interesting objects or other views, do please tweet them, to our attention <a href="http://twitter.com/goodformand"></a>@goodformand</a>.</p>
+
+<p>Also, please note: <strong><em>This site has not particularly been optimised</em></strong>. It's <em>rough</em>. Some of the pages take a while to load, especially the Date Graph. Your patience is welcome.</p>
+
+<p>Thanks must also go to the V&A for making its catalogue metadata available. The <a href="http://www.vam.ac.uk/api/">V&A API</a> has been online for some years now, and it's robust and well-documented.</p>

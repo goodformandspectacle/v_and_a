@@ -1,0 +1,254 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+body.dark {
+  background: black;
+  h1 {
+    color: white;
+  }
+}
+
+#header {
+  position: relative;
+}
+
+#footer {
+  border-top: 1px dotted #ccc;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-top: 10px;
+}
+
+#explanation {
+  font-size: 16px;
+  color: #aaa;
+  span.made {
+    font-weight: bold;
+    color: yellow;
+  }
+  span.acquired {
+    font-weight: bold;
+    color: cyan;
+  }
+}
+
+body.dark {
+  #explanation {
+    a:link, a:visited {
+      color: #cc5544;
+      text-decoration: none;
+    }
+    a:hover, a:active {
+      color: red;
+      text-decoration: underline;
+    }
+  }
+}
+
+#sketch-container {
+  height: 30000px;
+  position: relative;
+}
+
+#sketch-header {
+  font-size: 18px;
+  border-bottom: 1px solid #888;
+  padding-top: 40px;
+  margin-bottom: 5px;
+  background: black;
+  z-index: 999;
+  #dategraph-form {
+    input {
+      font-size: 18px;
+      background: black;
+      color: yellow;
+      border: 1px dotted yellow;
+      text-align: center;
+      width: 70px;
+      z-index: 10;
+      &:focus {
+        border: 1px solid yellow;
+      }
+    }
+  }
+  #object-dates {
+    border-top: 1px solid #888;
+    font-weight: bold;
+    width: 80%;
+    float: left;
+    background: #000;
+    position: relative;
+    padding-top: 5px;
+    .start {
+      float: left;
+    }
+    .end {
+      float:right;
+      padding-right: 5px;
+    }
+    .details {
+      width: 100%;
+      position: absolute;
+      text-align: center;
+      color: #888;
+      font-weight: normal;
+      top: 10px;
+      z-index: 1;
+      pointer-events: none;
+    }
+    color:yellow;
+  }
+
+  #accession-dates {
+    border-top: 1px solid #888;
+    font-weight: bold;
+    background: #000;
+    width: 20%;
+    float: left;
+    position: relative;
+    padding-top: 10px;
+    .start {
+      float: left;
+      padding-left: 5px;
+    }
+    h3 {
+      color: #888;
+      text-transform: uppercase;
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      top: -45px;
+      font-size: 15px;
+    }
+    .end {
+      float:right;
+    }
+    .join {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+    }
+    color:cyan;
+  }
+}
+
+
+#objects {
+  width: 80%;
+  background: black;
+  position: relative;
+  float: left;
+
+  a.block {
+    display: block;
+    position: absolute;
+    /*border-top: 1px solid #888;*/
+    height: 3px;
+
+    &.forcehover {
+      background: yellow !important;
+    }
+
+    &:hover, &:active {
+      background: yellow !important;
+      text-decoration: none !important;
+    }
+
+    &.very_yellow {
+      &:link, &:visited {
+        background: #ffff00;
+      }
+    }
+    &.quite_yellow {
+      &:link, &:visited {
+        background: #cccc00;
+      }
+    }
+    &.little_yellow {
+      &:link, &:visited {
+        background: #888800;
+      }
+    }
+    &.not_yellow {
+      &:link, &:visited {
+        background: #444400;
+      }
+    }
+  }
+}
+
+#accessions {
+  background: black;
+  float: left;
+  width: 20%;
+  margin-left: 80%;
+  position: relative;
+  a.accession {
+    display: block;
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: cyan;
+    span {
+      display: none;
+    }
+    &.highlight {
+      border: 5px solid cyan;
+      margin-top: -3px;
+      margin-left: -3px;
+    }
+    &.missing {
+      background: darkred;
+    }
+  }
+}
+
+img.popover {
+  position: absolute;
+  display: block;
+  max-width: 75px;
+  max-height: 75px;
+}
+
+.stickable {
+  padding:5px;
+}
+
+#error {
+  h1 {
+    color: red;
+    margin-bottom: 20px;
+  }
+  h2 {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0;
+    line-height: 1.4;
+  }
+  blockquote {
+    font-size: 24px;
+    border-left: none;
+    margin: 0 0 20px;
+    padding: 0;
+    line-height: 1.4;
+  }
+}
+
+#thing-grid  {
+  .block {
+    margin: 0 0 10px;
+  }
+  img {
+    max-width: 100%;
+  }
+}

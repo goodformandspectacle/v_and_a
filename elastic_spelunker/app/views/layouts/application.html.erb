@@ -1,0 +1,52 @@
+<! doctype html>
+<html>
+  <head>
+    <%= csrf_meta_tag %>
+    <%= favicon_link_tag %>
+    <meta http-equiv-'Content-Type' content='text/html; charset=utf-8' />
+    <meta name='lang' content='en' />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <title>
+      <%= yield :pagetitle %>
+      V&amp;A Spelunker by Good, Form &amp; Spectacle
+    </title>
+    <%= stylesheet_link_tag 'application' %>
+    <%= javascript_include_tag 'application' %>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+<!-- Hi Typekit -->
+<script src="//use.typekit.net/tqe4fut.js"></script>
+<script>try{Typekit.load();}catch(e){}</script>
+
+<!-- Hi Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52335255-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<!-- Hi ShareThis -->
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "bb4cd9ea-5610-4b49-b168-e70dae80da83", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+    
+  </head>
+  <body class='<%= yield :bodyclass %>'>
+    <%= render 'layouts/nav' %>
+    <div class="container">
+      <%= yield %>
+      <div id="footer">
+        <span class='st_pinterest_large'></span>
+        <span class='st_facebook_large'></span>
+        <span class='st_twitter_large'></span>
+        <span class='st_tumblr_large'></span>
+        <span class='st_wordpress_large'></span>
+        <div style="float:right;">Brought to you by <a href="http://goodformandspectacle.com">Good, Form & Spectacle</a></div>
+      </div>
+    </div>
+  </body>
+</html>

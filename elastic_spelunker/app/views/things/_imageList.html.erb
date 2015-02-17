@@ -1,0 +1,16 @@
+<div id="thing-grid">
+<% things.in_groups_of(3) do |row| %>
+  <div class='row'>
+    <% row.each do |thing| %>
+      <% if thing %>
+        <% if thing.has_image? %>
+          <div class='col-sm-4 block'><%= link_to image_tag(thing.image_url(:square)), thing_path(thing) %></div>
+        <% else %>
+          <div class='col-sm-4 block'><%= link_to image_tag(asset_path('missing-image.png')), thing_path(thing), {style: 'display: block; padding-top: 50px; text-align: center;'} %></div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
+<div class='clear'></div>
+</div>
