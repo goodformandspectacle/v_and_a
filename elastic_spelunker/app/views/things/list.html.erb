@@ -7,10 +7,10 @@ Big Dumb List <% if params[:page] %>(p<%= params[:page] %>)<% end %> :
 <%= render partial: 'things/toggle_image_list' %>
 
 <% if params[:images] %>
-<%= render partial: 'things/imageList', locals: {things: @things} %>
+<%= render partial: 'things/imageList', locals: {things: @rows} %>
 <% else %>
-<%= render partial: 'things/table', locals: {things: @things} %>
+<%= render partial: 'things/table', locals: {things: @rows} %>
 <% end %>
 
-<%= will_paginate @things %>
+<%= will_paginate @things_to_paginate %>
 

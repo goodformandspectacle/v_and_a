@@ -34,6 +34,8 @@ gem 'jbuilder', '~> 1.2'
 # elasticsearch
 gem 'active_model_serializers', '~> 0.9.0'
 gem 'elasticsearch'
+gem 'hashie'
+gem 'typhoeus'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

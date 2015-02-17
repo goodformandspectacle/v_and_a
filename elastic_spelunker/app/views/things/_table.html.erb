@@ -3,8 +3,8 @@
     <tr>
       <th>&nbsp;</th>
       <th>&nbsp;</th>
-      <% for field in Thing.attribute_names %>
-        <th><%= field %></th>
+      <% for key in things.first.keys.sort %>
+        <th><%= key %></th>
       <% end %>
       <th>&nbsp;</th>
     </tr>

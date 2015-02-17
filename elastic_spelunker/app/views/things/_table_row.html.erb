@@ -5,7 +5,7 @@
       <%= link_to image_tag(thing.image_url(:small)), thing_path(thing) %>
     <% end %>
   </td>
-  <% for field in Thing.attribute_names %>
+  <% for field in thing.keys.sort %>
     <td>
       <% if Facet.all.include?(field) && !thing[field].blank? %>
         <%= link_to thing[field], facet_thing_path(facet_id:field, id: thing[field]) %>
