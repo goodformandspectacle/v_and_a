@@ -1,5 +1,5 @@
 client = Elasticsearch::Client.new(
-  hosts: ['http://46b83eeea46bc4f9000.qbox.io/']
+  hosts: ['http://localhost:9200']
 )
 
 RawThing.find_in_batches(batch_size: 1000) do |things|

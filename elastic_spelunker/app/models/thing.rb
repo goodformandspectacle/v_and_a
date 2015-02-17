@@ -7,6 +7,64 @@ require 'typhoeus/adapters/faraday'
 
 class Thing
   INDEX_NAME = 'va_things'
+  attr_reader :original_hash
+
+  def initialize(hash)
+    @original_hash = hash
+  end
+
+  def method_missing(m, *args, &block)
+    if @original_hash
+      @original_hash.send(m, *args, &block)
+    end
+  end
+
+  def accession_year
+    if museum_number[-4..-1].to_s =~ /\d{4}/
+      y = museum_number[-4..-1].to_i
+      if (y > 1840) && (y < 2015)
+        y
+      else
+        nil
+      end
+    end
+  end
+
+  def accession_year_valid?
+    (accession_year =~ /\d{4}/) != nil
+  end
+
+  def api_path
+    "http://www.vam.ac.uk/api/json/museumobject/#{object_number}"
+  end
+
+  def has_image?
+    !primary_image_id.blank?
+  end
+
+  def image_url(size=nil)
+    if primary_image_id != ""
+      sizes = {small: 's',
+               medium: 'm',
+               square: 'ds',
+               large: 'l'}
+      if size
+        size_suffix = "_jpg_#{sizes[size]}"
+      else
+        size_suffix = ""
+      end
+      # http://media.vam.ac.uk/media/thira/collection_images/2009BX/2009BX7717_jpg_l.jpg 
+      "http://media.vam.ac.uk/media/thira/collection_images/#{primary_image_id[0,6]}/#{primary_image_id}#{size_suffix}.jpg"
+    end
+  end
+
+  def completeness
+    fields = Thing.attribute_names
+    total = fields.size
+
+    filled_out_fields = fields.select {|f| !self[f].blank?}
+    filled_out_fields.size.to_f / total
+  end
 
   class << self
     def truncatable_fields
@@ -50,9 +108,11 @@ class Thing
 
         rows = search_results_hash.hits.hits.map {|h| h._source}
 
+        things = rows.map {|row| Thing.new(row) }
+
         total_pages = total_pages_for_results(search_results_hash, per_page)
 
-        [rows, total_pages]
+        [things, total_pages]
       rescue Elasticsearch::Transport::Transport::Errors::NotFound
         [nil,0]
       end
