@@ -151,7 +151,7 @@ class Thing
         json.size per_page
         json.from per_page * (page-1)
         json.sort do
-          json.object_number "desc"
+          json.id "asc"
         end
       end
 
@@ -189,7 +189,6 @@ class Thing
       rescue Elasticsearch::Transport::Transport::Errors::NotFound
         nil
       end
-
     end
 
     def count_all
@@ -222,6 +221,54 @@ class Thing
         search_results_hash['hits']['total']
       rescue Elasticsearch::Transport::Transport::Errors::NotFound
         0
+      end
+    end
+
+    def for_date_graph(params)
+      limit = params[:limit] || 5000
+      if params[:start] && params [:end]
+        range_array = [{field: 'year_start',
+                        param: 'gte',
+                        value: params[:start]},
+                        {field: 'year_end',
+                         param: 'lt',
+                         value: params[:end]}]
+
+        query = Jbuilder.encode do |json|
+          json.query do
+            json.bool do
+              json.must do
+                json.array! range_array do |range|
+                  json.range do
+                    json.set! range[:field] do
+                      json.set! range[:param], range[:value]
+                    end
+                  end
+                end
+              end
+            end
+          end
+          json.size limit
+          json.sort do
+            json.year_start 'asc'
+          end
+        end
+      else
+        query = Jbuilder.encode do |json|
+          json.size limit
+        end
+      end
+
+    
+
+      begin
+        search_results_hash = query(INDEX_NAME,query)
+
+        rows = search_results_hash.hits.hits.map {|h| h._source}
+
+        things = rows.map {|row| Thing.new(row) }
+      rescue Elasticsearch::Transport::Transport::Errors::NotFound
+        [nil,0]
       end
     end
 
