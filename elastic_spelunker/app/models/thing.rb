@@ -63,7 +63,7 @@ class Thing
   end
 
   def completeness
-    fields = Thing.attribute_names
+    fields = keys
     total = fields.size
 
     filled_out_fields = fields.select {|f| !self[f].blank?}
