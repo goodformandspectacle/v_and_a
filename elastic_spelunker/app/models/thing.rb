@@ -14,7 +14,7 @@ class Thing
   end
 
   def to_param
-    object_number
+    id.to_s
   end
 
   def method_missing(m, *args, &block)
@@ -94,8 +94,27 @@ class Thing
       (total_hits.to_f/per_page).ceil
     end
 
-    def find(object_number)
-      # TODO
+    def find(id)
+      query = Jbuilder.encode do |json|
+        json.query do
+          json.term do
+            json.id id
+          end
+        end
+        json.size 1
+      end
+
+      begin
+        search_results_hash = query(INDEX_NAME,query)
+
+        rows = search_results_hash.hits.hits.map {|h| h._source}
+
+        if rows.any?
+          thing = Thing.new(rows.first)
+        end
+      rescue Elasticsearch::Transport::Transport::Errors::NotFound
+        nil
+      end
     end
 
     def paginate(page=1, per_page=10)
@@ -103,7 +122,7 @@ class Thing
         json.size per_page
         json.from per_page * (page-1)
         json.sort do
-          json.object_number "desc"
+          json.id "asc"
         end
       end
 

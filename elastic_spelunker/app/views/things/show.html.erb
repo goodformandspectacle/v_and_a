@@ -36,11 +36,17 @@
 
 <div class="thing-details">
   <dl>
-    <% for field in Thing.attribute_names %>
+    <% for field in @thing.keys.sort %>
       <dt><%= field %></dt>
       <dd>
         <% if Facet.all.include?(field) && !@thing[field].blank? %>
-          <%= link_to @thing[field], facet_thing_path(field, @thing[field]) %>
+          <% if Facet.lists.include?(field) %>
+            <%= @thing[field].map do |f| %>
+              <% link_to f, facet_thing_path(facet_id:field, id: f) %>
+            <% end.join(', ').html_safe %>
+          <% else %>
+            <%= link_to @thing[field], facet_thing_path(facet_id:field, id: @thing[field]) %>
+          <% end %>
         <% else %>
           <% if @thing[field].is_a?(String) %>
           <%= @thing[field].html_safe %>

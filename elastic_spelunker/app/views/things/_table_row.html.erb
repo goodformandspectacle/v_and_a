@@ -15,12 +15,12 @@
           <% end.join(', ').html_safe %>
         <% else %>
           <%= link_to thing[field], facet_thing_path(facet_id:field, id: thing[field]) %>
-      <% end %>
+        <% end %>
       <% else %>
         <% if Thing.truncatable_fields.include? field %>
-        <%= thing[field].truncate(100, separator: ' ') %>
+          <%= thing[field].truncate(100, separator: ' ') %>
         <% else %>
-        <%= thing[field] %>
+          <%= thing[field] %>
         <% end %>
       <% end %>
     </td>
