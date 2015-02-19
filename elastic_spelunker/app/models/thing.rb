@@ -177,7 +177,7 @@ class Thing
           json.facet do
             json.terms do
               json.field facet
-              json.size 1000
+              json.size 10000
             end
           end
         end
