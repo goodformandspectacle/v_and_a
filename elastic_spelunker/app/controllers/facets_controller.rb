@@ -76,12 +76,12 @@ class FacetsController < ApplicationController
                     "Figure"]
 
     @object_type = object_types.sort_by { rand }.first
-    @things = Thing.where(object: @object_type).limit(200).select {|t| t.primary_image_id != ""}
+    @things = Thing.of_object_type(@object_type).select {|t| t.primary_image_id != ""}
     length = rand(5) +7 
     @things = @things.sort_by { rand }[0,length]
     while @things.size == 0
       @object_type = object_types.sort_by { rand }.first
-      @things = Thing.where(object: @object_type).limit(200).select {|t| t.primary_image_id != ""}
+      @things = Thing.of_object_type(@object_type).select {|t| t.primary_image_id != ""}
       length = rand(5) +7 
       @things = @things.sort_by { rand }[0,length]
     end

@@ -225,6 +225,27 @@ class Thing
       end
     end
 
+    def of_object_type(object_type)
+      query = Jbuilder.encode do |json|
+        json.query do
+          json.match do
+            json.object_type object_type
+          end
+        end
+        json.size 200
+      end
+
+      begin
+        search_results_hash = query(INDEX_NAME,query)
+
+        rows = search_results_hash.hits.hits.map {|h| h._source}
+
+        things = rows.map {|row| Thing.new(row) }
+      rescue Elasticsearch::Transport::Transport::Errors::NotFound
+        nil
+      end
+    end
+
     def for_date_graph(params)
       limit = params[:limit] || 5000
       if params[:between]
