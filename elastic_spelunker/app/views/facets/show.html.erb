@@ -13,7 +13,7 @@
   </thead>
   <tbody>
     <% for v in @facet_vals %>
-      <% unless v.first.blank? %>
+      <% if !v.first.blank? && !v['key'].blank? %>
         <tr>
           <td><%= link_to v['key'], facet_thing_path(@facet, v['key']) %></td>
           <td><%= number_with_delimiter(v.doc_count, delimiter: ',') %></td>
