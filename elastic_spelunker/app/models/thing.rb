@@ -76,7 +76,8 @@ class Thing
     end
 
     def client
-      log = Rails.env.development?
+      #log = Rails.env.development?
+      log = nil
       Elasticsearch::Client.new log: log, 
         host: "localhost:9200",
         transport_options: {
@@ -226,13 +227,13 @@ class Thing
 
     def for_date_graph(params)
       limit = params[:limit] || 5000
-      if params[:start] && params [:end]
+      if params[:between]
         range_array = [{field: 'year_start',
                         param: 'gte',
-                        value: params[:start]},
+                        value: params[:between].first},
                         {field: 'year_end',
                          param: 'lt',
-                         value: params[:end]}]
+                         value: params[:between].last}]
 
         query = Jbuilder.encode do |json|
           json.query do
@@ -250,12 +251,15 @@ class Thing
           end
           json.size limit
           json.sort do
-            json.year_start 'asc'
+            json.year_end 'asc'
           end
         end
       else
         query = Jbuilder.encode do |json|
           json.size limit
+          json.sort do
+            json.year_end 'asc'
+          end
         end
       end
 
