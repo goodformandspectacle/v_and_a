@@ -23,7 +23,7 @@ gem 'will_paginate-bootstrap'
 
 gem 'humanize'
 
-gem 'ruby-progressbar'
+gem 'progressbar'
 
 #gem 'chunky_png'
 gem 'oily_png'
