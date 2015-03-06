@@ -62,14 +62,14 @@
         "format" : "dateOptionalTime"
       },
       "latitude" : {
-        "type" : "string"
+        "type" : "float"
       },
       "location" : {
         "type" : "string",
         "index" : "not_analyzed"
       },
       "longitude" : {
-        "type" : "string"
+        "type" : "float"
       },
       "marks" : {
         "type" : "string"
