@@ -22,3 +22,8 @@ available, via `rake spelunker:export_json`. This uses about 2.2gb on disk.
 Stick the JSON directory, the mapping.json for the schema, and the ingester
 tool onto a server of your choosing. `bundle install` will install
 dependencies.
+
+## Before running
+
+You'll need to make sure the V&A mapping.json is applied to an empty index that
+you'd like to throw data at.
