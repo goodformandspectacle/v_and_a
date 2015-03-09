@@ -7,7 +7,7 @@ namespace :spelunker do
   desc "Delete the index"
   task drop_index: :environment do
     puts "Dropping index."
-    `curl -XDELETE 'http://localhost:9200/#{Thing::INDEX_NAME}/'`
+    `curl -XDELETE '#{ELASTICSEARCH_HOST}/#{Thing::INDEX_NAME}/'`
   end
 
 
@@ -15,14 +15,14 @@ namespace :spelunker do
   task create_index: :environment do
     puts "Creating index"
     Dir.chdir(Rails.root) do
-      `curl -XPUT 'http://localhost:9200/#{Thing::INDEX_NAME}/' -d @mapping.json`
+      `curl -XPUT '#{ELASTICSEARCH_HOST}/#{Thing::INDEX_NAME}/' -d @mapping.json`
     end
   end
 
   desc "Ingest things from original SQL file"
   task ingest_things: :environment do
     client = Elasticsearch::Client.new(
-      hosts: ['http://localhost:9200']
+      hosts: [ELASTICSEARCH_HOST]
     )
 
     RawThing.find_in_batches(batch_size: 1000) do |things|
@@ -38,7 +38,7 @@ namespace :spelunker do
   desc "Ingest things from original SQL file using Bulk api"
   task bulk_ingest_things: :environment do
     client = Elasticsearch::Client.new(
-      hosts: ['http://localhost:9200']
+      hosts: [ELASTICSEARCH_HOST]
     )
 
     pbar = ProgressBar.new("Ingesting things", RawThing.all.count / 1000.0)

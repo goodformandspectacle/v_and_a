@@ -79,7 +79,7 @@ class Thing
       #log = Rails.env.development?
       log = nil
       Elasticsearch::Client.new log: log, 
-        host: "localhost:9200",
+        host: ELASTICSEARCH_HOST,
         transport_options: {
           request: { timeout: 30 }
         }
