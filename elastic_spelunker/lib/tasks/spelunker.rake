@@ -59,4 +59,28 @@ namespace :spelunker do
     end
     pbar.finish
   end
+
+  desc "Export JSON of raw data (requires ~ 2gig of disk space)"
+  task json_export: :environment do
+    pbar = ProgressBar.new("Exporting", RawThing.all.count / 1000.0)
+
+    dirname = Rails.root.join('json_data')
+    unless File.directory?(dirname)
+      FileUtils.mkdir_p(dirname)
+    end
+
+    i = 1000
+    RawThing.find_in_batches(batch_size: 1000) do |things|
+      # make an array of docs
+      thing_docs = things.map do |thing|
+        doc = RawThingSerializer.new(thing, root:false)
+      end
+      File.open(Rails.root.join("json_data", "#{i}.json"), 'w') do |f|
+        f.write(thing_docs.to_json)
+      end
+      pbar.inc
+      i += 1000
+    end
+    pbar.finish
+  end
 end
