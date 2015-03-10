@@ -5,7 +5,7 @@ class Numeric
 end
 
 class SketchesController < ApplicationController
-  #caches_action :completeness, cache_path: Proc.new {|c| c.request.url }, expires_in: 1.week
+  caches_action :completeness, cache_path: Proc.new {|c| c.request.url }, expires_in: 1.week
 
   def completeness
     @hard_cap = 5000
