@@ -22,6 +22,8 @@ gem 'jquery-rails'
 gem 'will_paginate', '~> 3.0'
 gem 'will_paginate-bootstrap'
 
+gem 'actionpack-action_caching'
+
 gem 'humanize'
 
 gem 'progressbar'
