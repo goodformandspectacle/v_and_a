@@ -52,4 +52,5 @@ end
 
 group :production do
   gem 'unicorn'
+  gem 'pg' # keep heroku happy.
 end
