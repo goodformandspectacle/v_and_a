@@ -1,4 +1,5 @@
 class FacetsController < ApplicationController
+  
   def index
     @facets = Facet.all
   end
