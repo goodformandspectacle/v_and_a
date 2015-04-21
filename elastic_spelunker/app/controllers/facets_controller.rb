@@ -1,10 +1,14 @@
 class FacetsController < ApplicationController
-  
+
   def index
+    set_cache_header(60 * 10)
+
     @facets = Facet.all
   end
 
   def show
+    set_cache_header(60 * 10)
+
     @facet = params[:id]
 
     values = Thing.counts_for_facet(@facet)
@@ -26,6 +30,8 @@ class FacetsController < ApplicationController
   end
 
   def things
+    set_cache_header(60 * 10)
+
     if params[:page]
       @current_page = params[:page].to_i
     else

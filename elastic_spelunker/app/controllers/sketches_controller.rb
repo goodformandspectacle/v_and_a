@@ -7,6 +7,8 @@ end
 class SketchesController < ApplicationController
 
   def completeness
+    set_cache_header(60 * 10)
+    
     @hard_cap = 5000
     if params[:start] && params[:end]
       @min_year_start = params[:start].to_i

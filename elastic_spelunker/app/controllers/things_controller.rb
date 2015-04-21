@@ -1,6 +1,9 @@
 class ThingsController < ApplicationController
 
   def index
+
+    set_cache_header(60 * 10)
+
     if params[:page]
       @current_page = params[:page].to_i
     else
@@ -21,11 +24,15 @@ class ThingsController < ApplicationController
   end
 
   def list
+    set_cache_header(60 * 10)
+
     index
     render :list
   end
 
   def show
+    set_cache_header(60 * 10)
+    
     @thing = Thing.find(params[:id])
   end
   
