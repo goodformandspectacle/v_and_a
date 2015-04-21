@@ -38,6 +38,9 @@ gem 'elasticsearch'
 gem 'hashie'
 gem 'typhoeus'
 
+gem 'puma' # Puma is now our webserver.
+gem 'rails_12factor'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -45,12 +48,10 @@ end
 
 # Use thin in development
 group :development do
-  gem 'thin'
   gem 'capistrano-rails', '~> 1.1.1'
   gem 'capistrano-bundler', '~> 1.1.2'
 end
 
 group :production do
-  gem 'unicorn'
   gem 'pg' # keep heroku happy.
 end
