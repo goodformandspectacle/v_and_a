@@ -8,7 +8,7 @@ The spelunker is a pretty standard Rails application, with some exceptions.
 
 It expects an elasticsearch instance to run. By default, in *development* this is expected to be `http://localhost:9200` - but you can configure this in `config/environments/development.rb'.
 
-In *production*, you should set your elasticsearch host as an environment variable called `ELASTICSEARCH_HOST`.
+In *production*, you should set your elasticsearch host as an environment variable called `ELASTICSEARCH_HOST`. You can include http basic auth in the URL you set here.
 
 In development, the software also expects a MySQL database. Set up your database in `config/database.yml` and then:
 
