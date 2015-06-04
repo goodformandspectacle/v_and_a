@@ -3,8 +3,12 @@
     <tr>
       <th>&nbsp;</th>
       <th>&nbsp;</th>
-      <% for key in things.first.keys.sort %>
-        <th><%= key %></th>
+      <% if things.any? %>
+        <% for key in things.first.keys.sort %>
+          <th><%= key %></th>
+        <% end %>
+      <% else %>
+        <th>&nbsp;</th>
       <% end %>
       <th>&nbsp;</th>
     </tr>
