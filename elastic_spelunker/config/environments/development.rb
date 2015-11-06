@@ -28,4 +28,9 @@ ElasticSpelunker::Application.configure do
   config.assets.debug = true
 
   ELASTICSEARCH_HOST = "http://localhost:9200"
+  USE_AWS_ES = false
+  #USE_AWS_ES = true
+  #ELASTICSEARCH_HOST = "your.domain.eu-west-1.es.amazonaws.com" # note no protocol
+  #AWS_ID = 'YOUR_ID_HERE'
+  #AWS_SECRET = 'YOUR_SECRET_HERE'
 end

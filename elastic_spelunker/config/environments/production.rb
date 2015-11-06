@@ -78,4 +78,7 @@ ElasticSpelunker::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
   ELASTICSEARCH_HOST = ENV['ELASTICSEARCH_HOST']
+  USE_AWS_ES = true
+  AWS_ID = ENV['AWS_ID']
+  AWS_SECRET = ENV['AWS_SECRET']
 end
