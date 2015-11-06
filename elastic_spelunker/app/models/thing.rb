@@ -1,9 +1,10 @@
 require 'elasticsearch'
-require 'elasticsearch'
 require 'jbuilder'
 require 'hashie'
 require 'typhoeus'
 require 'typhoeus/adapters/faraday'
+require 'faraday_middleware'
+require 'faraday_middleware/aws_signers_v4'
 
 class Thing
   INDEX_NAME = 'va_things'
@@ -78,11 +79,43 @@ class Thing
     def client
       #log = Rails.env.development?
       log = nil
-      Elasticsearch::Client.new log: log, 
-        host: ELASTICSEARCH_HOST,
-        transport_options: {
-          request: { timeout: 30 }
-        }
+      
+      # USE_AWS_ES is set in the environment config
+      if USE_AWS_ES
+
+        # Because Heroku doesn't have static IPs, we have to use
+        # AWS IAM authentication and sign every request. Fortunately,
+        # aws_signers_v4 lets us set up a signed Faraday transport
+        # to do so. So that's what's going on here.
+
+        transport_configuration = lambda do |f|
+          f.request :aws_signers_v4,
+            credentials: Aws::Credentials.new(AWS_ID, AWS_SECRET),
+            service_name: 'es',
+            region: 'eu-west-1'
+
+          f.adapter Faraday.default_adapter
+        end
+
+        elastic_transport = Elasticsearch::Transport::Transport::HTTP::Faraday.new( 
+          hosts: [{ scheme: 'https', host: ELASTICSEARCH_HOST, port: '443' }],
+          &transport_configuration)
+
+        Elasticsearch::Client.new transport: elastic_transport,
+          log: log,
+          transport_options: {
+            request: { timeout: 30 }
+          }
+      else
+        # if we're not on AWS, we can connect to elasticsearch
+        # without wrapping the transport.
+
+        Elasticsearch::Client.new log: log, 
+          host: ELASTICSEARCH_HOST,
+          transport_options: {
+            request: { timeout: 30 }
+          }
+      end
     end
 
     def query(index, query)
