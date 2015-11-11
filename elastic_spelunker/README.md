@@ -39,4 +39,11 @@ The simplest way to deploy the Spelunker is to push the Rails app to a Heroku in
 
 `../deploy_elastic_spelunker.sh` is the git subtree invocation to push a subdirectory to Heroku.
 
-I used [qbox](http://qbox.io) to deploy my elasticsearch instance, and the code in `/ingester` to push all the data into qbox, but obviously there are many ways to approach this.
+In production, we use the [AWS Elasticsearch Service][awses], with access limited to a particular IAM user (as well as developers' IP addresses). This is configured in `config/environments/production.rb` with a global variable (`USE_AWS_ES`), and via a series of environment variables: `AWS_ID`, `AWS_SECRET`, and `ELASTICSEARCH_HOST`.
+
+The AWS_ID and AWS_SECRET variables are the key and secret for a particular Amazon IAM user, that's been granted access to the Elasticsearch server via the AWS control panel (as part of the process of creating the ES server). We use IAM security as the application is running on Heroku, which cannot guarantee us a fixed IP address; otherwise, we could just use Amazon's fixed IP security.
+
+If `USE_AWS_ES` is set, the application will sign every request to elasticsearch with the IAM key and secret. We do this using a Faraday middleware called [`faraday_middleware-aws-signers-v4`][middleware], which performs this for us on each Elasticsearch request, and is configured inside `app/models/thing.rb`
+
+[awses]:https://aws.amazon.com/elasticsearch-service/
+[middleware]:https://github.com/winebarrel/faraday_middleware-aws-signers-v4
